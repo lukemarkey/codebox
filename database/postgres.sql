@@ -1,0 +1,12 @@
+###########################################################################
+## SSH REMOTE POSTGRES DATABASE ON LOCALHOST
+###########################################################################
+
+ssh -L 2222:localhost:5432 ${USERNAME}@${SERVER}
+
+###########################################################################
+## CREATE DATABASE
+###########################################################################
+
+CREATE DATABASE ${DATABASE_NAME}
+GRANT ALL PRIVILEGES ON DATABASE ${DATABASE_NAME} TO ${DATABASE_USER}

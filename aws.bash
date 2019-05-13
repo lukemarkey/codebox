@@ -1,0 +1,87 @@
+###########################################################################
+## AWS GLACIER
+###########################################################################
+
+## UPLOAD FILE TO AWS GLACIER
+
+aws glacier upload-archive --account-id ${ACCOUNT_ID} --archive-description ${DESCRIPTION} --vault-name ${VAULT_NAME} --body ${FILE}
+
+## LIST PENDING AND COMPLETED JOBS FOR AWS GLACIER VAULT
+
+aws glacier list-jobs --account-id ${ACCOUNT_ID} --vault-name ${VAULT_NAME}
+
+## LIST / GET ARCHIVES WITHIN AWS GLACIER VAULT
+
+aws glacier initiate-job --account-id ${ACCOUNT_ID} --vault-name ${VAULT_NAME} --job-parameters '{"Type": "inventory-retrieval"}'
+
+## GET JOB OUTPUT FOR AWS GLACIER
+
+aws glacier get-job-output --account-id ${ACCOUNT_ID} --vault-name ${VAULT_NAME} --job-id ${JOB_ID} output.json
+
+
+## MULTIPART UPLOAD (EDIT SCRIPT FOR VAULT NAME)
+
+wget https://raw.githubusercontent.com/benporter/aws-glacier-multipart-upload/master/glacierupload.sh
+chmod u+x glacierupload.sh 
+split --bytes=4194304 --verbose ${ZIPFILE} part
+./glacierupload.sh
+
+###########################################################################
+## AWS GLACIER ACCESS POLICY
+###########################################################################
+
+{
+    "Version":"2012-10-17",
+    "Statement":[
+       {
+          "Sid":"cross-account-upload",
+          "Principal": {
+             "AWS": [
+                "${AWS_USER_ID}"
+             ]
+          },
+          "Effect":"Allow",
+          "Action": [
+             "glacier:UploadArchive",
+             "glacier:InitiateMultipartUpload",
+             "glacier:AbortMultipartUpload",
+             "glacier:CompleteMultipartUpload"
+          ],
+          "Resource": [
+             "${AWS_RESOURCE_ID}"                                           
+          ]
+       }
+    ]
+}
+
+###########################################################################
+## AWS GLACIER VAULT LOCK POLICY
+###########################################################################
+
+{
+     "Version":"2012-10-17",
+     "Statement":[
+      {
+         "Sid": "deny-based-on-archive-age",
+         "Principal": "*",
+         "Effect": "Deny",
+         "Action": "glacier:DeleteArchive",
+         "Resource": [
+            "${AWS_RESOURCE_ID}"
+         ],
+         "Condition": {
+             "NumericLessThan" : {
+                  "glacier:ArchiveAgeInDays" : "365"
+             }
+         }
+      }
+   ]
+}
+
+###########################################################################
+## AWS S3
+###########################################################################
+
+## SYNC AWS S3 BUCKET TO LOCAL DIRECTORY
+
+aws s3 sync s3://${S3_BUCKET_NAME} ${LOCAL_DIRECTORY}

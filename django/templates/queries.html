@@ -1,0 +1,7 @@
+{###########################################################################
+## LIST ALL MANY TO MANY CATEGORIES IN LISTING
+###########################################################################}
+
+{% for category in listing.categories.all %}
+	<span>{{ category }}</span>
+{% endfor %}
