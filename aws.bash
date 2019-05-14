@@ -9,6 +9,7 @@ aws glacier upload-archive --account-id ${ACCOUNT_ID} --archive-description ${DE
 ## LIST PENDING AND COMPLETED JOBS FOR AWS GLACIER VAULT
 
 aws glacier list-jobs --account-id ${ACCOUNT_ID} --vault-name ${VAULT_NAME}
+aws glacier list-multipart-uploads --account-id - --vault-name ${VAULT_NAME}
 
 ## LIST / GET ARCHIVES WITHIN AWS GLACIER VAULT
 

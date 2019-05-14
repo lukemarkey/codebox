@@ -31,6 +31,7 @@ mkdir -p templates/website/layout templates/website/components
 touch templates/website/layout/layout.html templates/website/layout/header.html templates/website/layout/footer.html
 touch templates/website/about.html templates/website/home.html
 
+## SETUP NPM
 ## SETUP SETTINGS
 ## SETUP URLS
 ## SETUP VIEW & TEMPLATE

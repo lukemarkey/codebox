@@ -1,0 +1,33 @@
+#!/bin/bash
+
+## CHMOD +X ${BASH_FILE_PATH}
+## CHMOD -R 755 ${BACKUP_DIRECTORY}
+
+## CONFIGURATION
+
+BACKUP_DIRECTORY=/home/luke/backups/river/database
+DATABASE=river
+USER=luke
+
+DRIVE_FOLDER_ID=1lFRBHQxtrDCDV3wJsOp8juCB3sg5bpFr
+
+## VARIABLES
+
+DAYS_TO_KEEP=14
+FILE_SUFFIX=_database.sql
+
+FILE=`date +"%Y%m%d%H%M"`${FILE_SUFFIX}
+OUTPUT_FILE=${BACKUP_DIRECTORY}/${FILE}
+
+## DUMP AND COMPRESS DATABASE BACKUP FILE
+
+pg_dump -U ${USER} ${DATABASE} -F p -f ${OUTPUT_FILE}
+gzip ${OUTPUT_FILE}
+
+## BACKUP TO GOOGLE DRIVE ( GDRIVE )
+
+drive upload --parent ${DRIVE_FOLDER_ID} --file ${OUTPUT_FILE}.gz
+
+## REMOVE OLD ENTRIES PAST DAYS TO KEEP
+
+find ${BACKUP_DIRECTORY} -maxdepth 1 -mtime ${DAYS_TO_KEEP} -name "*${FILE_SUFFIX}.gz" -exec rm -rf '{}' ';'

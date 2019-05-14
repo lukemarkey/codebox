@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# TOOLBOX FILES
+BASH_PROFILE="${HOME}"/.bash_profile
+
+# TOOBLOX DIRECTORIES
+ALIAS="${HOME}"/toolbox/alias
+
+# PURGE LOCAL BASH PROFILE
+echo -e "#!/bin/bash\n" > "${HOME}"/.bash_profile
+
+# SOURCE ALIASES TO BASH PROFILE
+for file in ${ALIAS}/* ; do
+  cat "${file}" >> ~/.bash_profile
+done ;
