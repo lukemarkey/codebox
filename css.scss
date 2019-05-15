@@ -29,3 +29,8 @@ media queries: em
 // PRINT
 
 @media print
+
+// DARKEN BACKGROUND IMAGE
+.image-container {
+	linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/static/website/img/default.jpg') center center no-repeat;
+}

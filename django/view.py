@@ -60,4 +60,34 @@ ordered_sub = sub_models.order_by('property_name') ## ORDER SUB MODELS BY ASSIGN
 model = Model.objects.filter(pk=primary_key) ## GET MODEL TO BE UPDATED
 model = Model.objects.filter(pk=primary_key).update(element=updated_element) ## GET, UPDATE, AND SAVE
 
+###########################################################################
+## VIEW METHOD FORM VALID SEND MAIL
+###########################################################################
 
+def form_valid(self, form, **kwargs):
+
+	context = self.get_context_data(**kwargs)
+
+	name = form.cleaned_data.get('name')
+	from_email = form.cleaned_data.get('email')
+	subject = form.cleaned_data.get('subject')
+	phone = form.cleaned_data.get('phone')
+	message = form.cleaned_data.get('message')
+
+	text_content = "Name: " + name + " Email: " + from_email + " Subject: " + subject + " Phone: " + phone + " Message: " + message
+	html_content = render_to_string('website/email/contact-form.html', {
+		'name': name,
+		'email': from_email,
+		'subject': subject,
+		'phone': phone,
+		'message': message
+	})
+
+	send_mail(
+		subject = "New River Church Contact Request",
+		message = text_content,
+		from_email = 'Messenger <mail@rivercanton.com>',
+		recipient_list = ['mitch@rivercanton.com', 'mitchellpinion@gmail.com'],
+		fail_silently = False,
+		html_message = html_content
+	)

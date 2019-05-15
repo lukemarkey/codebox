@@ -10,7 +10,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-	path('', include('website.urls')),
+	path('', include('website.urls', namespace='website')),
     path('admin/', admin.site.urls),
 ]
 
@@ -25,6 +25,8 @@ from django.conf.urls import url
 from django.urls import path
 
 from website import views
+
+app_name = 'website'
 
 urlpatterns = [
 	path('', views.HomePageView.as_view(), name='home'),
