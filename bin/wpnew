@@ -1,0 +1,383 @@
+#!/bin/bash
+
+# TODO :: ALL DB_COLLATE ENV CALL TO APPLICATION.PHP ( NEEDED :: utf8mb4_unicode_ci)
+
+######################################################################
+# CONSTRUCTOR BLOCK - DECLARE VARIABLES & CONFIG OPTIONS
+######################################################################
+
+# RESET GETOPTS IN CASE SHELL HAS CALLED PREVIOUS GETOPTS
+OPTIND=1 ;
+
+# SCRIPT VARIABLES
+SCRIPT=$( basename "${BASH_SOURCE[0]}" ) ; # SCRIPT NAME
+SCRIPTPATH=$( cd "$(dirname "$0")" || exit ; pwd -P )  ; # ABSOLUTE PATH OF SCRIPT DIRECTORY
+SCRIPTMOD=$( stat -c %Y "${SCRIPTPATH}"/"${SCRIPT}" ) ; # SCRIPT LAST MOD TIMESTAMP IN EPOCH
+NUMARGS=$# ; # NUMBER OF ARGUMENTS PASS FROM CLI
+
+# ENVIRONMENT VARIABLES
+DIR_STUB_WORDPRESS="${HOME}/.dotfiles/stub/wordpress/scaffold" ;
+DIR_STUB_TRELLIS="${HOME}/.dotfiles/stub/wordpress/trellis/scaffold" ;
+
+# ASCII COLOR CODES
+declare -A c ;
+c[red]='\033[0;31m' ; # ERROR
+c[yellow]='\033[0;33m' ; # IN PROCESS
+c[green]='\033[0;32m' ; # SUCCESS
+c[purple]='\033[0;35m' ; # NETWORK
+c[blue]='\033[0;34m' ; # EXECUTABLE
+c[cyan]='\033[36m' ; # EVENT
+c[nc]='\033[0m' ; # RESET COLOR
+
+# COMPOSER DEPENDENCIES - WORDPRESS BEDROCK
+cbedrock=()
+cbedrock+=('php')
+cbedrock+=('composer/installers')
+cbedrock+=('vlucas/phpdotenv')
+cbedrock+=('johnpbloch/wordpress')
+cbedrock+=('oscarotero/env')
+cbedrock+=('roots/wp-password-bcrypt')
+
+# COMPOSER DEPENDENCIES - WPMU DEV
+cwpmu=()
+cwpmu+=('wpmudev/wpmu-dev-dashboard')
+cwpmu+=('wpmudev/wp-smush-pro')
+cwpmu+=('wpmudev/wp-defender')
+cwpmu+=('wpmudev/snapshot')
+cwpmu+=('wpmudev/wp-hummingbird')
+cwpmu+=('wpmudev/user-reports')
+cwpmu+=('wpmudev/google-analytics-for-wordpress-mu-sitewide-and-single-blog-solution')
+# COMPOSER DEPENDENCIES - WORDPRESS REQUIRE-DEV
+cdev=()
+# DEBUGBAR PLUGINS
+cdev+=('wpackagist-plugin/debug-bar')
+cdev+=('wpackagist-plugin/debug-bar')
+cdev+=('wpackagist-plugin/debug-bar-constants')
+cdev+=('wpackagist-plugin/debug-bar-post-types')
+cdev+=('wpackagist-plugin/debug-bar-shortcodes')
+cdev+=('wpackagist-plugin/debug-bar-screen-info')
+cdev+=('wpackagist-plugin/debug-bar-list-dependencies')
+cdev+=('wpackagist-plugin/debug-bar-actions-and-filters-addon')
+cdev+=('wpackagist-plugin/debug-bar-remote-requests')
+
+# COMPOSER DEPENDENCIES - WORDPRESS PLUGINS5
+cplugins=()
+# SYSTEM PLUGINS
+cplugins+=('wpackagist-plugin/css-javascript-toolbox')
+cplugins+=('wpackagist-plugin/rename-wp-login')
+cplugins+=('wpackagist-plugin/url-params')
+cplugins+=('wpackagist-plugin/updraftplus')
+cplugins+=('wpackagist-plugin/wp-better-emails')
+cplugins+=('wpackagist-plugin/wpmandrill')
+cplugins+=('wpackagist-plugin/duplicate-page')
+cplugins+=('wpackagist-plugin/contact-form-7')
+cplugins+=('wpackagist-plugin/embed-any-document')
+# USER ROLE / PERMISSION PLUGINS
+cplugins+=('wpackagist-plugin/nav-menu-roles')
+cplugins+=('wpackagist-plugin/user-role-editor')
+# AWS PLUGINS
+cplugins+=('wpackagist-plugin/amazon-web-services')
+cplugins+=('wpackagist-plugin/amazon-s3-and-cloudfront')
+# MEDIA PLUGINS
+cplugins+=('wpackagist-plugin/enhanced-media-library')
+cplugins+=('wpackagist-plugin/enable-media-replace')
+# POST PLUGINS
+cplugins+=('wpackagist-plugin/advanced-custom-fields')
+cplugins+=('wpackagist-plugin/meta-box')
+cplugins+=('wpackagist-plugin/mb-custom-post-type')
+cplugins+=('wpackagist-plugin/duplicate-post')
+# SEO PLUGINS
+cplugins+=('wpackagist-plugin/google-sitemap-generator')
+cplugins+=('wpackagist-plugin/akismet')
+# ROOTS PLUGINS
+cplugins+=('roots/soil')
+
+######################################################################
+# HELPER BLOCK - RETURN HELP COMMANDS FOR SCRIPT
+######################################################################
+
+# HELP FUNCTION
+function HELP {
+  echo -e \\n"${c[cyan]}Help Documentation for ${SCRIPT^^}. ${c[nc]}"
+  echo -e "${c[yellow]}Last Modified: $(date -d @${SCRIPTMOD}) ${c[nc]}"\\n
+  echo -e "${c[cyan]}${SCRIPT^^} Recognizes the Following Flags: ${c[nc]}"\\n
+  # LIST & DESCRIBE AVAILABLE ARGUMENTS
+  echo -e "${c[yellow]}--composer ${c[nc]}          --Composer Dependencies to be Added to New Wordpress Sites."
+  echo -e "${c[yellow]}--site ${c[nc]}              --Scaffold New Wordpress Site"
+  echo -e "${c[yellow]}--sage ${c[nc]}              --Scaffold New Sage Theme"
+  echo -e "${c[yellow]}--trellis-local ${c[nc]}     --Scaffold New Wordpress Trellis (Local Setup)"
+  echo -e "${c[yellow]}--trellis-remote ${c[nc]}    --Scaffold New Wordpress Trellis (Remote Setup)"
+  echo -e "${c[yellow]}--env ${c[nc]}               --Setup Local Environment File"
+  echo -e "${c[yellow]}--mariadb ${c[nc]}           --Setp Local Database Environment"
+  echo -e "${c[yellow]}-h ${c[nc]}                 --Displays this Help Message. No Further Functions are Performed."\\n
+  exit 1
+}
+
+# CHECK ARGUMENTS. IF NONE ARE PASSED, PRINT HELP & EXIT
+if [ "${NUMARGS}" -eq 0 ] ; then
+  HELP
+fi
+
+# #####################################################################
+# UPDATE BEDROCK SITE COMPOSER
+# #####################################################################
+
+function UPDATE_COMPOSER {
+
+  # SCAFFOLD WORDPRESS - PURGE COMPOSER
+  echo -e "\\n${c[cyan]}EVENT: Resetting Composer${c[yellow]}\\n"
+  cat "${DIR_STUB_WORDPRESS}/composer-web.json" > "composer.json" ;
+
+  # SCAFFOLD WORDPRESS - BEDROCK DEPENDENCIES
+  for dependency in "${cbedrock[@]}" ; do
+    composer require --no-update "${dependency}" ;
+  done ;
+  # SCAFFOLD WORDPRESS - DEVELOPER DEPENDENCIES
+  for dependency in "${cdev[@]}" ; do
+    composer require --dev --no-update "${dependency}" ;
+  done ;
+  # SCAFFOLD WORDPRESS - WPMU DEV DEPENDENCIES
+  for dependency in "${cwpmu[@]}" ; do
+    composer require --no-update "${dependency}" ;
+  done ;
+  # SCAFFOLD WORDPRESS - WORDPRESS PLUGINS
+  for dependency in "${cplugins[@]}" ; do
+    composer require --no-update "${dependency}" ;
+  done ;
+
+}
+
+######################################################################
+# RUN ON FLAG S - SCAFFOLD NEW WORDPRESS WEBSITE
+######################################################################
+
+# SCAFFOLD WORDPRESS WEBSITE
+function SCAFFOLD_WP_SITE {
+
+  composer create-project roots/bedrock site --no-install && cd site || exit ;
+
+  # SCAFFOLD WORDPRESS - PURGE COMPOSER
+  echo -e "\\n${c[cyan]}EVENT: Resetting Composer${c[yellow]}\\n"
+  cat "${DIR_STUB_WORDPRESS}/composer-web.json" > "composer.json" ;
+
+  # SCAFFOLD WORDPRESS - BEDROCK DEPENDENCIES
+  for dependency in "${cbedrock[@]}" ; do
+    composer require --no-update "${dependency}" ;
+  done ;
+  # SCAFFOLD WORDPRESS - DEVELOPER DEPENDENCIES
+  for dependency in "${cdev[@]}" ; do
+    composer require --dev --no-update "${dependency}" ;
+  done ;
+  # SCAFFOLD WORDPRESS - WPMU DEV DEPENDENCIES
+  for dependency in "${cwpmu[@]}" ; do
+    composer require --no-update "${dependency}" ;
+  done ;
+  # SCAFFOLD WORDPRESS - WORDPRESS PLUGINS
+  for dependency in "${cplugins[@]}" ; do
+    composer require --no-update "${dependency}" ;
+  done ;
+
+  # COPY SCAFFOLDING STUBS TO WORDPRESS SITE
+  cat "${DIR_STUB_WORDPRESS}"/Caddyfile > "Caddyfile" ;
+  cat "${DIR_STUB_WORDPRESS}"/.gitignore > ".gitignore" ;
+  cat "${DIR_STUB_WORDPRESS}"/application.php > "config/application.php" ;
+
+  # CREATE LOCAL DATABASE & ENV
+  # GEN_ENV_LOCAL
+  # TODO :: SETUP MARIADB CONFIG FOR VIRTUALBOX
+
+  # SCAFFOLD WORDPRESS - DOWNLOAD CORE AND INSTALL VENDOR
+  # composer install
+  GEN_WPINSTALL_LOCAL ;
+
+  echo -e \\n"${c[green]}SUCCESS: New Wordpress Site Scaffolded${c[nc]}"\\n ;
+
+}
+
+######################################################################
+# RUN ON FLAG SAGE - SCAFFOLD NEW SAGE THEME
+######################################################################
+
+# WORDPRESS INSTALL SAGE INTO PROJECT
+function SCAFFOLD_WP_SAGE {
+
+    # ASK USER FOR PROJECT NAME
+    read -rp 'WHAT DO YOU WANT TO NAME YOUR THEME FOLDER?: ' DIR_THEME ;
+
+    # CHECK IF DIRECTORY ALREADY EXISTS
+    if [ -d "$(pwd)"/web/app/themes/"${DIR_THEME}" ] ; then
+      echo -e "${c[red]}ERROR: DIRECTORY ALREADY EXISTS ${c[nc]}" ; exit 1 ;
+    fi
+
+    composer create-project roots/sage web/app/themes/"${DIR_THEME}" --no-install && cd web/app/themes/"${DIR_THEME}"  &&
+    wp theme activate "${DIR_THEME}" ;
+}
+
+
+######################################################################
+# RUN ON FLAG TL & TR - SCAFFOLD NEW WORDPRESS TRELLIS
+######################################################################
+
+# SCAFFOLD WORDPRESS TRELLIS ON LOCALHOST
+function SCAFFOLD_WP_TRELLIS {
+  # ASK USER FOR THEIR PROJECT NAME
+  read -rp 'DIRECTORY NAME FOR WORDPRESS TRELLIS: ' DIR_PROJECT ;
+
+  # CHECK IF DIRECTORY ALREADY EXISTS
+  if [ -d "$(pwd)"/"${DIR_PROJECT}" ] ; then
+    echo -e "${c[red]}ERROR: DIRECTORY ALREADY EXISTS - USING EXISTING DIRECTORY ${c[nc]}" ;
+  elif ! [ $(basename $(pwd) ) == "${DIR_PROJECT}" ] ; then
+    mkdir "${DIR_PROJECT}" && cd "$_"
+  else
+    cd "${DIR_PROJECT}" ;
+  fi
+
+  # PULL LATEST FROM TRELLIS, PURGE GIT AND PREP FOR NEW REPO
+  git clone --depth=1 git@github.com:roots/trellis.git trellis && cd "$_" && rm -rf .git && rm -rf .github && git init ;
+  echo -e \\n"${c[green]}SUCCESS: Trellis Initialized ${c[nc]}"
+
+  # LOAD TRELLIS SCAFFOLDING STUBS INTO PROJECT
+  cat "${DIR_STUB_TRELLIS}"/hosts-staging > hosts/staging ;
+  cat "${DIR_STUB_TRELLIS}"/staging-mail.yml > group_vars/staging/mail.yml ;
+  cat "${DIR_STUB_TRELLIS}"/staging-wp_sites.yml > group_vars/staging/wordpress_sites.yml ;
+  cat "${DIR_STUB_TRELLIS}"/all-users.yml > group_vars/all/users.yml ;
+  cat "${DIR_STUB_TRELLIS}"/staging-vault.yml > group_vars/staging/vault.yml ;
+  # ADD MAILHOG TO PROVISIONING PLAYBOOK
+  echo "    - { role: mailhog, tags: [mailhog, mail] }" >> server.yml ;
+
+  # POPULATE STUBS WITH PROJECT CONFIGURATION
+  echo -e \\n"${c[yellow]}PROCESS: Find / Replace Stub Variables with Project Configs... ${c[nc]}"\\n
+  # FILE DECLARATIONS
+  FILE_WORDPRESS_SITES=$(pwd)/group_vars/staging/wordpress_sites.yml
+  # ASK USER FOR PROJECT DOMAIN & REPO FOR STUB CONFIGURATION
+  read -rp 'DOMAIN NAME FOR PROJECT (e.g. keystrokecreative.com): ' DOMAIN ;
+  read -rp 'SUBDOMAIN / REPO NAME FOR PROJECT (e.g. keystroke-website): ' REPO ;
+  read -rp 'DATABASE SCHEMA FOR STAGING DEPLOY (e.g. keystroke_staging): ' DATABASE ;
+  echo -e "${c[yellow]}PROCESS: Updating Stub Files... ${c[nc]}"
+  sed -i "s/\${PROJECT_DOMAIN}/${DOMAIN}/g" "${FILE_WORDPRESS_SITES}"
+  sed -i "s/\${PROJECT_REPO}/${REPO}/g" "${FILE_WORDPRESS_SITES}"
+  sed -i "s/\${PROJECT_DATABASE}/${DATABASE}/g" "${FILE_WORDPRESS_SITES}"
+  echo -e "${c[green]}SUCCESS: Stub Files Updated${c[nc]}"
+  ## TODO - LOAD TRELLIS VAULT STUB CONFIGURATION
+
+  # PREP FOR PUSH TO REPO
+  echo -e "${c[purple]}NETWORK: Prepared to Push to Remote ${c[nc]}"\\n
+  # CONFIRM PUSH TO REPOSITORY
+  read -rp 'Permission to Push to Repository? [Y/n]: ' ;
+  if [[ ${REPLY,,} =~ ^y ]] ; then
+    echo -e "${c[purple]}NETWORK: Pushing Trellis to Repository ${c[nc]}"
+    git add --a && git commit -m "first commit" && git push -u origin master
+  else
+    echo -e "${c[purple]}NETWORK: Aborted Repository Push${c[nc]}"
+  fi
+
+  # INSTALL ANSIBLE GALAXY REQUIREMENTS
+  cd trellis && ansible-galaxy install -r requirements.yml
+
+  # SETUP INITIAL VAULT PASSWORD FILE
+  cd trellis && echo -e "VAULT_PASSWORD" > .vault_pass && chmod 600 .vault_pass
+
+}
+
+######################################################################
+# UTILITY BLOCK - SHARED METHODS & FUNCTIONS
+######################################################################
+
+# CHECK IF DIRECTORY EXISTS IN CURRENT DIRECTORY
+function DIR_EXISTS() {
+  if [ -d "$(pwd)/$1" ] ; then
+    echo -e "${c[red]}ERROR: DIRECTORY ALREADY EXISTS ${c[nc]}" ; exit 1 ;
+  fi
+}
+
+# INDEX :: LIST ALL FILES IN A DIRECTORY
+function INDEX_DIR() {
+  ## DECLARE ARGUMENT COUNT & TARGET DIRECTORY
+  NUMARGS=$# ; DIRECTORY='' ;
+  echo -e "${c[yellow]}NUMARGS : ${NUMARGS} ${c[nc]}"
+  echo -e "${c[yellow]}DIRECTORY : ${DIRECTORY} ${c[nc]}"
+  # IF NO ARGUMENTS PASSED : TARGET CURRENT DIRECTORY
+  if [[ ${NUMARGS} == 0 ]] ; then
+    "${DIRECTORY}"="$(pwd)"
+  else
+    "${DIRECTORY}"="$1"
+  fi
+  # INDEX DIRECTORY
+  echo -e "${c[cyan]}EVENT: INDEXING ${DIRECTORY} ${c[nc]}"
+  for file in ${DIRECTORY}/* ; do
+    echo -e "${c[yellow]}PROCESS: Indexed ${file} ${c[nc]}" ;
+  done ; echo -e "${c[green]}SUCCESS: Sourced Aliases ${c[nc]}" ;
+}
+
+# GENERATE A NEW LOCAL ENV FILE BASED ON USER INPUT
+GEN_ENV_LOCAL() {
+
+  FILE_ENV=$(pwd)/.env
+  STUB_ENV=${HOME}/.dotfiles/stub/wordpress/scaffold/.env.localhost
+
+  if [ -f "${FILE_ENV}" ] ; then
+    read -rp "Are you sure you want to overwrite your .env file? " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]] ; then
+      exit 1 ;
+    fi
+  fi
+
+  read -rp 'Database Name?: ' ENV_DB_NAME ;
+  ENV_DB_USER=root ;
+  ENV_DB_PW=localdev ;
+  ENV_DB_HOST=127.0.0.1 ;
+  ENV_DB_HOME=http://localhost:8080 ;
+
+  cp "${STUB_ENV}" "${FILE_ENV}" ;
+
+  sed -i "s/\${STUB_DB_NAME}/${ENV_DB_NAME}/g" "${FILE_ENV}" ;
+  sed -i "s/\${STUB_DB_USER}/${ENV_DB_USER}/g" "${FILE_ENV}" ;
+  sed -i "s/\${STUB_DB_PW}/${ENV_DB_PW}/g" "${FILE_ENV}" ;
+  sed -i "s/\${STUB_DB_HOST}/${ENV_DB_HOST}/g" "${FILE_ENV}" ;
+  sed -i "s/\${STUB_DB_HOME}/${ENV_DB_HOME}/g" "${FILE_ENV}" ;
+
+  echo -e \\n"${c[green]}SUCCESS: Local ENV Populated${c[nc]}"\\n ;
+
+}
+
+# GENERATE A NEW LOCALHOST DB FOR WORDPRESS
+GEN_MARIADB_LOCAL() {
+
+  read -rp 'Database Name?: ' SQL_DBNAME ;
+
+  if hash mysql 2>/dev/null; then
+      mysql --defaults-extra-file="${HOME}"/.mylogin.cnf -se "CREATE DATABASE $SQL_DBNAME;"
+  else
+    echo -e "${c[red]}ERROR: Unable to find MySQL${c[nc]}" ;
+    exit ;
+  fi
+
+  echo -e \\n"${c[green]}SUCCESS: Database Created${c[nc]}"\\n ;
+}
+
+# GENERATE A NEW LOCALHOST WP INSTALL
+GEN_WPINSTALL_LOCAL() {
+  wp core download ;
+  wp core install --url=http://localhost:8080 --title="Markey Agency" --admin_user=lukemarkey --admin_password=localdev --admin_email=luke.h.markey@gmail.com.com
+}
+
+######################################################################
+# CONFIGURATION BLOCK - LOAD OPTIONS FROM COMMAND LINE
+######################################################################
+
+# SET FLAGS
+while test $# -gt 0 ; do
+  case "$1" in
+    -c|--composer ) UPDATE_COMPOSER ; shift ;;
+    -s|--site ) SCAFFOLD_WP_SITE ; shift ;;
+    -a|--sage ) SCAFFOLD_WP_SAGE ; shift ;;
+    -t|--trellis-local ) SCAFFOLD_WP_TRELLIS ; shift ;;
+    -e|--env ) GEN_ENV_LOCAL ; shift ;;
+    -m|--mariadb ) GEN_MARIADB_LOCAL ; shift ;;
+    -h|--help ) HELP ; shift ;;
+    -- ) shift ; break ;;
+    * ) break ;;
+  esac
+done
+

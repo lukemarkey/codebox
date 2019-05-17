@@ -2,7 +2,15 @@
 ## COMMANDS
 ###########################################################################
 
+## ENTER POSTGRES CONSOLE AS POSTGRES USER
 sudo -u postgres psql
+
+## DROP AND RECREATE POSTGRES DATABASE
+sudo su postgres
+dropdb ${DATABASE}
+createdb ${DATABASE}
+psql
+GRANT ALL PRIVILEGES ON DATABASE ${DATABASE} TO ${USER}
 
 ###########################################################################
 ## SSH REMOTE POSTGRES DATABASE ON LOCALHOST

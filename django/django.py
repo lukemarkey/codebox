@@ -24,9 +24,13 @@ pip freeze > requirements.txt
 
 npm init
 npm install node-sass concurrently browser-sync --save-dev
+npm install gulp gulp-concat gulp-series gulp-util --save-dev
+
+npm install noty --save ## NOTIFICATIONS
+npm install store --save ## BROWSER STORAGE
 
 mkdir -p media media/content media/default
-touch .env .env.example .gitignore
+touch .env .env.example .gitignore gulpfile.js
 
 cd ${APP_NAME}
 

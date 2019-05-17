@@ -36,6 +36,15 @@ class Model(models.Model):
 
 	date = models.DateField(default=date.today)
 
+	# ONE TO ONE RELATIONSHIP (A PLACE CAN OPTIONALLY BE A RESTAURANT)
+	place = models.OneToOneField(Place, on_delete=models.CASCADE, primary_key=True)
+	## MANY TO ONE RELATIONSHIP (MANY PAGE CONTENT CAN BELONG TO ONE PAGE)
+	page = models.ForeignKey('Page', on_delete=models.CASCADE, related_name='page_content')
+	## MANY TO MANY RELATIONSHIP
+	article_publications = models.ManyToManyField(Publication)
+
+
+
 	## IF UPDATING EXISTING MODEL THEN FIRST ADD THIS
 	created_at = models.DateTimeField(default=timezone.now)
 	updated_at = models.DateTimeField(default=timezone.now)

@@ -53,9 +53,11 @@ recent_items = Model.objects.all()[:5] ## GET 5 MOST RECENT MODELS
 
 managed_model_by_slug = Model.objects.get_by_natural_key('slug') ## RETURN OBJECT BY SLUG NOT PK
 
+url_paramter_model = Model.objects.get(slug=self.kwargs.get('slug')) ## GET OBJECT BY URL PARAMETER
+
 models = Model.objects.get(pk=primary_key) ## GET PARENT MODEL
-sub_models = models.filter(filter=filter_by) ## GET SUB MODELS FROM PARENT QUERY
-ordered_sub = sub_models.order_by('property_name') ## ORDER SUB MODELS BY ASSIGNMENT
+filtered_models = models.filter(filter=filter_by) ## GET SUB MODELS FROM PARENT QUERY
+ordered_models = filtered_models.order_by('property_name') ## ORDER SUB MODELS BY ASSIGNMENT
 
 model = Model.objects.filter(pk=primary_key) ## GET MODEL TO BE UPDATED
 model = Model.objects.filter(pk=primary_key).update(element=updated_element) ## GET, UPDATE, AND SAVE
