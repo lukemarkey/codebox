@@ -34,7 +34,10 @@ Options SCSS
 Fonts
 Colors
 Sizes
-Website SCSS
+Website Theme SCSS
+Logo
+Favicon
+Images
 
 <!-- UNORDERED TASKS -->
 
