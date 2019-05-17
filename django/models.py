@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 from datetime import date
 
@@ -31,21 +32,27 @@ class Model(models.Model):
 	image_local = models.ImageField(upload_to='images/%m-%Y/', default='images/default.jpg')
 	pdf = models.FileField(upload_to='uploads/%m-%Y/')
 
-	price =  models.DecimalField(max_digits=6, decimal_places=2)
+	price =  models.DecimalField(max_digits=6, decimal_places=2, default=25.00)
 
 	date = models.DateField(default=date.today)
-	created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-    	ordering = ['-updated_at']
-    	verbose_name_plural = 'Models'
+	## IF UPDATING EXISTING MODEL THEN FIRST ADD THIS
+	created_at = models.DateTimeField(default=timezone.now)
+	updated_at = models.DateTimeField(default=timezone.now)
+	## MODEL TIMESTAMPS
+	created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+	updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+	class Meta:
+		ordering = ['-updated_at']
+		verbose_name_plural = 'Models'
 
 	def __str__(self): # set the name of the model
 		return self.name
 
 	def __unicode__(self): # allow many to many iteration in django template
 		return self.name
+		# return self.name.replace(" ", "_").lower # edit name for template queries
 
 	def save(self, *args, **kwargs):
 		if not self.id: # ONLY UPDATE SLUG ON CREATE

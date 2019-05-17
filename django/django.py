@@ -33,51 +33,13 @@ cd ${APP_NAME}
 touch urls.py
 
 mkdir -p static/website/css static/website/js static/website/img static/website/scss static/website/fonts
-mkdir -p templates/website/layout templates/website/components
+mkdir -p templates/website/layout templates/website/components templates/website/email
 mkdir -p fixtures management/commands
 
 touch fixtures/auth.json fixtures/page.json fixtures/content.json management/commands/seed.py
 touch templates/website/layout/layout.html templates/website/layout/header.html templates/website/layout/footer.html
-touch templates/website/about.html templates/website/home.html
+touch templates/website/home.html
 touch static/website/scss/website.scss static/website/scss/mobile.scss static/website/scss/options.scss
-
-## SETUP GITIGNORE
-## SETUP NPM
-## SETUP ENV
-
-## SETUP SETTINGS
-## SETUP URLS
-## SETUP VIEW
-## SETUP APP NAMESPACES
-
-## SETUP MODELS
-## SETUP FIXTURES
-## SETUP SEED
-
-## SETUP THEME
-## copy html template index page
-## remove unwanted html sections
-## copy necessary css, js, images to project
-## replace css, js, image links to static
-## disable page links from html
-## move template to layout files
-## customize header and footer
-## customize homepage preview
-
-## SETUP WEBSITE
-## server response pages
-## create sitemap
-## terms and conditions
-## aws s3 resources
-
-## SETUP DEFAULTS
-
-## SETUP MAIL
-## SETUP HONEYPOT ('honeypot.middleware.HoneypotMiddleware')
-
-## SETUP SEO
-## image alt tags
-
 
 ###########################################################################
 ## SETUP DJANGO PROJECT ON SERVER
@@ -152,24 +114,6 @@ def form_valid(self, form, **kwargs):
 		recipient_list = ['mitch@rivercanton.com', 'mitchellpinion@gmail.com'],
 		fail_silently = False,
 		html_message = html_content
-	)
-
-## FORM: CONTACT FORM
-from django import forms
-
-class ContactForm(forms.Form):
-	name = forms.CharField(
-		widget=forms.TextInput(attrs={'placeholder': 'Name'}),
-		required=True
-	)
-	from_email = forms.EmailField(
-		widget=forms.EmailInput(attrs={'placeholder': 'Email'}),
-		required=True
-	)
-
-	message = forms.CharField(
-		widget=forms.Textarea(attrs={'placeholder': 'Message'}),
-		required=True
 	)
 
 # VIEW: QUERY MODEL BY MULTIPLE CATEGORIES

@@ -23,7 +23,7 @@ aws glacier get-job-output --account-id ${ACCOUNT_ID} --vault-name ${VAULT_NAME}
 ## MULTIPART UPLOAD (EDIT SCRIPT FOR VAULT NAME)
 
 wget https://raw.githubusercontent.com/benporter/aws-glacier-multipart-upload/master/glacierupload.sh
-chmod u+x glacierupload.sh 
+chmod u+x glacierupload.sh
 split --bytes=4194304 --verbose ${ZIPFILE} part
 ./glacierupload.sh
 
@@ -49,7 +49,7 @@ split --bytes=4194304 --verbose ${ZIPFILE} part
              "glacier:CompleteMultipartUpload"
           ],
           "Resource": [
-             "${AWS_RESOURCE_ID}"                                           
+             "${AWS_RESOURCE_ID}"
           ]
        }
     ]
@@ -86,3 +86,20 @@ split --bytes=4194304 --verbose ${ZIPFILE} part
 ## SYNC AWS S3 BUCKET TO LOCAL DIRECTORY
 
 aws s3 sync s3://${S3_BUCKET_NAME} ${LOCAL_DIRECTORY}
+
+###########################################################################
+## AWS S3 BUCKET POLICY
+###########################################################################
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AddPerm",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::${S3_BUCKET_NAME}/*"
+        }
+    ]
+}

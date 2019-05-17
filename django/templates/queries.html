@@ -5,3 +5,13 @@
 {% for category in listing.categories.all %}
 	<span>{{ category }}</span>
 {% endfor %}
+
+{###########################################################################
+## CHECK CHILD OBJECTS FOR PROPERTY
+###########################################################################}
+
+{% for content in page.page_content.all %}
+	{% ifequal content.name 'Homepage Banner' %}
+		<h1>{{content.heading}}</h1>
+	{% endifequal %}
+{% endfor %}

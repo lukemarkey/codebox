@@ -9,8 +9,12 @@ from website.models import Page, PageContent, Inventory
 class PageContentInline(admin.TabularInline):
 
 	model = PageContent
+	fields = ['name', 'heading', 'subheading', 'content', 'link', 'image']
 	readonly_fields = ['name']
 	can_delete = False
+
+	def has_add_permission(self, request, obj=None):
+		return False
 
 ###########################################################################
 ## MODELS AVAILABLE ON THE ADMIN DASHBOARD
@@ -20,7 +24,8 @@ class PageContentInline(admin.TabularInline):
 class PageAdmin(admin.ModelAdmin):
 
 	inlines = [ PageContentInline ]
-	exclude = ('title', 'description',)
+	readonly_fields = ['name', 'slug']
+	can_delete = False
 
 @admin.register(Inventory)
 class InventoryAdmin(admin.ModelAdmin):

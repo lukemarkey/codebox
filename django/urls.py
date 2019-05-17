@@ -30,4 +30,14 @@ app_name = 'website'
 
 urlpatterns = [
 	path('', views.HomePageView.as_view(), name='home'),
+	path('index-page/<slug>/', views.DetailPageView.as_view(), name='detail-page'),
+]
+
+###########################################################################
+## URL PATTERNS
+###########################################################################
+
+urlpatterns = [
+	path('', views.HomePageView.as_view(), name='home'), ## STANDARD PATH
+	path('index-page/<slug>/', views.DetailPageView.as_view(), name='detail-page'), ## VARIABLE PATH
 ]
