@@ -1,3 +1,12 @@
+###########################################################################
+## INSTALL NODE AND NPM
+###########################################################################
+
+sudo apt-get install git-core curl build-essential openssl libssl-dev
+sudo su
+curl -sL https://deb.nodesource.com/setup_12.x | bash -
+sudo apt install -y nodejs
+
 ## DJANGO NPM AUTOLOAD BROWSER SCRIPTS
 
 npm install node-sass concurrently browser-sync --save-dev

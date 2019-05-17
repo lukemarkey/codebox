@@ -9,6 +9,10 @@ sudo apt install xscreensaver
 sudo apt install xfce4-goodies
 sudo apt install apt-transport-https
 
+sudo apt install python3-venv python3-pip
+sudo apt install postgresql postgresql-contrib
+sido apt install virtualenv
+
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt install sublime-text

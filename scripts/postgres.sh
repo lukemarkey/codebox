@@ -1,3 +1,9 @@
+###########################################################################
+## INSTALL POSTGRES
+###########################################################################
+
+sudo apt install postgresql postgresql-contrib
+
 ## SSH TUNNEL TO LOCALHOST
 
 ssh -L 2222:localhost:5432 ${USERNAME}@${IP_ADDRESS}
