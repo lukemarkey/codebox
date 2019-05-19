@@ -1,0 +1,18 @@
+<div class="form-group">
+
+	<label for="product-size"></label>
+
+	<select id="product-size" class="form-control custom-select">
+		{% for size in product.product_sizes.all %}
+			{% if size.size == "Mini" %}
+				<option selected="selected">{{size.size}}: &dollar;{{size.price}} - {{size.dimensions}}</option>
+			{% else %}
+				<option>{{size.size}}: &dollar;{{size.price}} - {{size.dimensions}}</option>
+			{% endif %}
+		{% endfor %}
+
+	</select>
+
+
+
+</div>

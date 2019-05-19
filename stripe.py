@@ -92,3 +92,56 @@ stripe.api_key = "${STRIPE_PRIVATE_API_KEY}"
 stripe.Customer.modify('cus_V9T7vofUbZMqpv',
  source='tok_visa',
 )
+
+###########################################################################
+## STRIPE VIEW CHARGE LOGIC
+###########################################################################
+
+try:
+    charge = stripe.Charge.create(
+      amount={{amount}},
+      currency="usd",
+      customer={{customer}},
+      description={{description}},
+      metadata={{this.id}}
+  )
+except stripe.error.CardError as e:
+    # Problem with the card
+    pass
+except stripe.error.RateLimitError as e:
+    # Too many requests made to the API too quickly
+    pass
+except stripe.error.InvalidRequestError as e:
+    # Invalid parameters were supplied to Stripe API
+    pass
+except stripe.error.AuthenticationError as e:
+    # Authentication Error: Authentication with Stripe API failed (maybe you changed API keys recently)
+    pass
+except stripe.error.APIConnectionError as e:
+    # Network communication with Stripe failed
+    pass
+except stripe.error.StripeError as e:
+    # Stripe Error
+    pass
+else:
+    #success
+
+###########################################################################
+## STRIPE SESSION
+###########################################################################
+
+stripe.api_key = 'sk_test_GwQ7dDLVGQt09EO6a0HaeDG300kFYCvJaW'
+
+session = stripe.checkout.Session.create(
+  payment_method_types=['card'],
+  line_items=[{
+    'name': 'T-shirt',
+    'description': 'Comfortable cotton t-shirt',
+    'images': ['https://example.com/t-shirt.png'],
+    'amount': 500,
+    'currency': 'usd',
+    'quantity': 1,
+  }],
+  success_url='https://example.com/success',
+  cancel_url='https://example.com/cancel',
+)

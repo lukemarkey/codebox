@@ -7,13 +7,15 @@ Create Virtual Environment
 
 Install Dependencies
 Install NPM
-Install User Module
+
+Install User App
 
 Create Media
 Create Env
 Create Gitignore
 Create Editorconfig
 Create Requirements
+Create Gulpfile
 Create Notes
 
 Create App Url
@@ -39,6 +41,17 @@ Logo
 Favicon
 Images
 
+<!-- SEO TASKS -->
+
+Title
+Description
+Header Tags
+Image Alt Tags
+Mobile Testing
+Pagespeed Testing
+Google Analytics
+Search Console
+
 <!-- UNORDERED TASKS -->
 
 AWS S3
@@ -52,3 +65,5 @@ Sitemap
 404 Pages
 Design
 Sitemap
+Noty
+Popup
