@@ -24,17 +24,15 @@ pip freeze > requirements.txt
 
 npm init
 npm install node-sass concurrently browser-sync --save-dev
-npm install gulp gulp-concat gulp-series gulp-util --save-dev
-
-npm install noty --save ## NOTIFICATIONS
-npm install store --save ## BROWSER STORAGE
+npm install gulp gulp-concat gulp-series gulp-util gulp-minify-css gulp-uglify --save-dev
+npm install store noty sweetalert2 vue --save
 
 mkdir -p media media/content media/default
 touch .env .env.example .gitignore gulpfile.js
 
 cd ${APP_NAME}
 
-touch urls.py
+touch urls.py forms.py
 
 mkdir -p static/website/css static/website/js static/website/img static/website/scss static/website/fonts
 mkdir -p templates/website/layout templates/website/components templates/website/email

@@ -25,6 +25,7 @@ Create App Fixtures
 Create App Commands
 
 Configure Settings
+Configure Logging
 Configure Project Urls
 
 Scaffold App Views
@@ -51,6 +52,7 @@ Mobile Testing
 Pagespeed Testing
 Google Analytics
 Search Console
+Terms & Cookie Policy
 
 <!-- UNORDERED TASKS -->
 

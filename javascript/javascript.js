@@ -1,4 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////
+// CHECK IF VARIABLE UNDEFINED
+///////////////////////////////////////////////////////////////////////////
+
+if (typeof variable === 'undefined' || variable === null) {
+
+}
+
+///////////////////////////////////////////////////////////////////////////
 // HREF BY CLASS NAME
 ///////////////////////////////////////////////////////////////////////////
 
@@ -24,7 +32,31 @@ document.getElementById('id').onclick = function(){ }
 })(jQuery);
 
 function changeElementText() {
-	span = document.getElementById("spanID");
-	text = document.createTextNode("Text to insert.");
+	var span = document.getElementById("spanID");
+	var text = document.createTextNode("Text to insert.");
 	span.appendChild(text);
+}
+
+///////////////////////////////////////////////////////////////////////////
+// SET ACTIVE CLASS TO PARENT LIST ITEM IN NAV MENU
+///////////////////////////////////////////////////////////////////////////
+
+function setActiveNavigation() {
+	var path = window.location.href;
+	$('#menu-primary li a').each(function() {
+		if( this.href === path ) {
+			this.parentNode.parentNode.className = 'active';
+		}
+	});
+}
+
+///////////////////////////////////////////////////////////////////////////
+// REMOVE DOM ELEMENTS FROM HTML (FASTER THAN INNERHTML)
+///////////////////////////////////////////////////////////////////////////
+
+function removeElement() {
+	var myNode = document.getElementById("id");
+	while (myNode.firstChild) {
+		myNode.removeChild(myNode.firstChild);
+	}
 }
