@@ -5,9 +5,11 @@
 
 {# BASIC CONTACT FORM HTML #}
 
-<form method="post" action="{% url 'email-contact' %}" class="form-validation" autocomplete="off">
+<form method="post" action="{% url 'email-contact' %}" class="form-validation">
 
     {% csrf_token %}
+
+    {{ form.captcha }}
 
     <div class="row">
         <div class="col-sm-6">
@@ -19,6 +21,6 @@
     </div>
 
     {{ form.message }}
-    <button class="theme-button p-bg-color hvr-float-shadow">Submit Message</button>
+    <input type="submit" value="Submit Message" class="theme-button p-bg-color hvr-float-shadow">
 </form>
 

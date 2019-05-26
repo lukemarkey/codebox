@@ -55,7 +55,10 @@ class ContactPageView(FormView):
 			html_message = html_content
 		)
 
-		return self.render_to_response(context)
+		form.send_email()
+
+		return super().form_valid(form) ## REDIRECT TO SUCCESS URL
+		## return self.render_to_response(context)
 
 ###########################################################################
 ## BASIC TEMPLATE VIEW

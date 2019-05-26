@@ -1,7 +1,7 @@
 ## ADD NEW SUDO USER TO SERVER
 
-adduser ${USERNAME}
-usermod -aG sudo ${USERNAME}
+sudo adduser ${USERNAME}
+sudo usermod -aG sudo ${USERNAME}
 
 sudo nano /etc/ssh/sshd_config
 ---

@@ -11,17 +11,17 @@ media queries: em
 
 // bootstrap breakpoints
 
-// smaller
+// smallest
 @media (max-width: 440px)
 
 // extra small
-@media (max-width: 768px)
+@media (min-width: 440px) and (max-width: 768px)
 
 // small
 @media (min-width: 768px) and (max-width: 992px)
 
 // medium
-@media (min-width: 992px) and (max-width: 992px)
+@media (min-width: 992px) and (max-width: 1200px)
 
 // large
 @media (min-width: 1200px)

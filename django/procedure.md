@@ -25,11 +25,14 @@ Create App Fixtures
 Create App Commands
 
 Configure Settings
-Configure Logging
+Configure Logging / Sentry
 Configure Project Urls
 
 Scaffold App Views
 Scaffold App Urls
+
+Update Codebox
+Update Snippet
 
 <!-- WEBSITE DESIGN -->
 
@@ -69,3 +72,7 @@ Design
 Sitemap
 Noty
 Popup
+Recaptcha
+VueJS
+Swal2
+Noty

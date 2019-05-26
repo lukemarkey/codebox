@@ -19,7 +19,7 @@ django-admin startapp ${APP_NAME}
 
 virtualenv -p python3 ${ENV_NAME}
 pip install django gunicorn psycopg2-binary python-decouple pillow ## ESSENTIAL LIBRARIES
-pip install django-honeypot ## USEFUL LIBRARIES
+pip install django-honeypot django-recaptcha ## USEFUL LIBRARIES
 pip freeze > requirements.txt
 
 npm init

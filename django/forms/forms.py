@@ -3,6 +3,10 @@
 ###########################################################################
 
 from django import forms
+from django.core import validators
+
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Invisible
 
 class ContactForm(forms.Form):
 
@@ -13,12 +17,14 @@ class ContactForm(forms.Form):
 	)
 
 	name = forms.CharField(required=True) ## REQUIRED=TRUE BY DEFAULT, REQUIRED=FALSE TO MAKE OPTIONAL
-	email = forms.EmailField(required=False)
+	email = forms.EmailField(required=True, validators=[validators.validate_email])
 	message = forms.CharField(widget=forms.Textarea(), required=False)
 
 	phone = forms.CharField(required=False) ## PHONE AS CHARFIELD BY DEFAULT OR LIBRARY VALIDATOR
 
 	request = forms.ChoiceField(choices=CONTACT_INQUIRY)
+
+	captcha = ReCaptchaField(widget=ReCaptchaV2Invisible())
 
 	# INITIATE UPDATES AFTER FORM RENDERED
 	def __init__(self, *args, **kwargs):
@@ -31,3 +37,7 @@ class ContactForm(forms.Form):
 	# GET VALUES IN FORM FROM UPDATEVIEW AND ADD NEW FORM DATA
 	def form_valid(self, form):
 		form.instance.net = form.instance.qty * form.instance.price
+
+	def send_email(self):
+		## SEND EMAIL USING THE SELF.CLEANED_DATA DICTIONARY
+		pass
