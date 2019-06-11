@@ -24,7 +24,8 @@ class ContactForm(forms.Form):
 
 	request = forms.ChoiceField(choices=CONTACT_INQUIRY)
 
-	captcha = ReCaptchaField(widget=ReCaptchaV2Invisible())
+	## captcha = ReCaptchaField(widget=ReCaptchaV2Invisible())
+	recaptcha = forms.CharField(required=True)
 
 	# INITIATE UPDATES AFTER FORM RENDERED
 	def __init__(self, *args, **kwargs):
@@ -33,6 +34,7 @@ class ContactForm(forms.Form):
 		self.fields['email'].widget.attrs.update({'placeholder': 'Email', 'class': 'form-control'})
 		self.fields['message'].widget.attrs.update({'placeholder': 'Message', 'class': 'form-control'})
 		self.fields['request'].widget.attrs.update({'class': 'form-control'})
+		self.fields['recaptcha'].widget = forms.HiddenInput()
 
 	# GET VALUES IN FORM FROM UPDATEVIEW AND ADD NEW FORM DATA
 	def form_valid(self, form):

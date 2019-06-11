@@ -43,8 +43,6 @@ class Model(models.Model):
 	## MANY TO MANY RELATIONSHIP
 	article_publications = models.ManyToManyField(Publication)
 
-
-
 	## IF UPDATING EXISTING MODEL THEN FIRST ADD THIS
 	created_at = models.DateTimeField(default=timezone.now)
 	updated_at = models.DateTimeField(default=timezone.now)

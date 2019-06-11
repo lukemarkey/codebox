@@ -56,6 +56,7 @@ Pagespeed Testing
 Google Analytics
 Search Console
 Terms & Cookie Policy
+Purify CSS
 
 <!-- UNORDERED TASKS -->
 
@@ -72,7 +73,8 @@ Design
 Sitemap
 Noty
 Popup
-Recaptcha
+Recaptcha v3
 VueJS
 Swal2
 Noty
+Web Font Loader

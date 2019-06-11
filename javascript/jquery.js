@@ -8,3 +8,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	})(jQuery);
 });
 
+///////////////////////////////////////////////////////////////////////////
+// SET ELEMENT TO WINDOW HEIGHT
+///////////////////////////////////////////////////////////////////////////
+
+$('div.homepage-hero-module').css('height', $(window).height()+'px');
+$('div.filter').css('height', $(window).height()+'px');

@@ -99,9 +99,8 @@ sudo systemctl enable nginx
 http {
 	## BROTLI SETTINGS
 	brotli on;
-    brotli_comp_level 6;
-    brotli_static on;
-    brotli_types text/plain text/css application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript image/x-icon image/vnd.microsoft.icon image/bmp image/svg+xml;
+	brotli_comp_level 4;
+	brotli_static on;
 }
 
 ## ADD GZIP AS A FALLBACK
@@ -115,19 +114,43 @@ http {
 }
 
 ## SETUP PAGESPEED FOR NGINX CONF
-
 http {
-	## PAGESPEED SETTINGS
 	pagespeed on;
-	pagespeed FileCachePath /var/ngx_pagespeed_cache;
+	pagespeed FileCachePath "/var/ngx_pagespeed_cache/";
 	pagespeed RewriteLevel CoreFilters;
+	pagespeed ListOutstandingUrlsOnError on;
+}
+
+## PAGESPEED FOR SERVER BLOCK
+server {
+	location ~ "\.pagespeed\.([a-z]\.)?[a-z]{2}\.[^.]{10}\.[^.]+" {
+		add_header "" "";
+	}
+	location ~ "^/pagespeed_static/" { }
+	location ~ "^/ngx_pagespeed_beacon$" { }
+
+	pagespeed EnableFilters rewrite_javascript;
+	pagespeed EnableFilters rewrite_css;
+	pagespeed EnableFilters defer_javascript;
+	pagespeed EnableFilters prioritize_critical_css;
+	pagespeed EnableFilters move_css_to_head;
+
+	pagespeed EnableFilters lazyload_images;
+	pagespeed LazyloadImagesAfterOnload off;
+	pagespeed LazyloadImagesBlankUrl "https://www.gstatic.com/psa/static/1.gif";
+	pagespeed EnableFilters rewrite_images;
+
+	pagespeed EnableFilters collapse_whitespace;
+	pagespeed EnableFilters remove_comments;
+
+	pagespeed EnableFilters debug;
 }
 
 ## ADD BROWSER CACHING TO SERVER BLOCK
 
 server {
 	location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
-	    expires 7d;
+		expires 7d;
 	}
 }
 

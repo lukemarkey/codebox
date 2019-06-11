@@ -9,9 +9,17 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.sitemaps.views import sitemap
+from root.sitemap import PageSitemap
+
+sitemaps = {
+	'pages': PageSitemap
+}
+
 urlpatterns = [
 	path('', include('website.urls', namespace='website')),
     path('admin/', admin.site.urls),
+    path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}, name='django-contrib-sitemaps.views.sitemap')
 ]
 
 ## MAY NEED TO ADD FOR ASSET PATH DEBUGGING
