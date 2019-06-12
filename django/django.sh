@@ -49,14 +49,14 @@ read -rp 'What is the name of your model? (website.Page): ' FIXTURE_MODEL
 
 echo 'Please enter the fields necessary for your fixture'
 while true; do
-	read -rp 'Enter the field name for your fixture model (name): ' FIXTURE_MODEL_FIELD
-	read -rp  'Do you want to add another field to your fixture model? (y/n): ' -n 1 ## -N FLAG FOR NUMBER OF CHARACTERS ALLOWED
-	if [[ ${REPLY} =~ ^[Nn]$ ]]; then
-		echo 'Breaking while statement'
-		break
-	else
-		echo 'Continuing loop'
-	fi
+  read -rp 'Enter the field name for your fixture model (name): ' FIXTURE_MODEL_FIELD
+  read -rp  'Do you want to add another field to your fixture model? (y/n): ' -n 1 ## -N FLAG FOR NUMBER OF CHARACTERS ALLOWED
+  if [[ "${REPLY,,}" =~ ^(n) ]]; then ## ,, ON VARIABLE FOR LOWERCASE TRANFORM
+    echo -n 'Breaking while statement'
+    break
+  else
+    echo -n 'Continuing loop'
+  fi
 done
 
 
@@ -76,7 +76,7 @@ PAGES+=('About Page')
 
 
 for PAGE in ${PAGES[@]} ; do
-	echo -e "$PAGE"
+  echo -e "$PAGE"
 done
 
 echo -e "${PAGES[@]}"
