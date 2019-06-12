@@ -1,8 +1,5 @@
 ## TODO
 
-add event to lewis website from text
-embed google form to river website
-
 victory website
 codebox update
 aim website
@@ -39,16 +36,45 @@ review calendar
 review mint
 push codebox
 
-## TODAY
+## PERSONAL
 
-work
+django script
 
-school
-registration
+## WORK
+
+victory website
+
+## SCHOOL
+
+ethics discussion 02
 financial aid
-ethics module 2
+hardware
 
 ---
+
+330
+django script
+
+315
+victory website
+
+310
+river website
+
+1030
+victory website
+
+945
+hardware
+
+930
+financial aid
+
+915
+financial aid
+
+900
+ethics discussion 02
 
 300
 river website
