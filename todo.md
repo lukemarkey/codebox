@@ -1,31 +1,21 @@
 ## TODO
 
-victory website
 codebox update
-aim website
-river website
-
-automated pagespeed scripts
 
 server password backup accounts
-nginx optimization
-
-autoptimize cache size
-contact form recipient fix
-aim panel nearest location email to location
-aim sitemap noindex fix
-aim cincinnati workorder
-aimla.com aimresearchnetwork.net website redirect
-
-victory pagespeed / sitemap
-senior pagespeed / sitemap
-river seo / pagespeed / sitemap
-jets pagespeed / sitemap
+django backups
+server snapshots
+journalctl logs
 
 seo management plan of action
-may seo management
 
-wordpress backup plugin
+wordpress:
+autoptimize
+autoclear cache
+s3 backups:
+lillie
+lewis
+mfg
 
 ## DAILY TASKS
 
@@ -33,24 +23,81 @@ personal email
 business email
 kennesaw email
 review calendar
-review mint
-push codebox
-
-## PERSONAL
-
-django script
+review clarity
+update repositories
 
 ## WORK
 
+river website
 victory website
+wordpress backups
+django backups
 
 ## SCHOOL
 
-ethics discussion 02
-financial aid
-hardware
+hardware module 01
+
+## TODAY
+
+river website
 
 ---
+
+0200-0230
+break
+
+0145
+aim backups s3
+
+0130
+aim backups s3
+
+0115
+aim backups
+
+1230-100
+aim test forms
+update sitemap
+cincinnati estimate
+
+1216
+disable resize_images
+cincinnati facility
+
+1200
+break
+
+1145
+cincinnati facility
+aim logo resize
+
+1130
+admin cache debug
+remove wp-content { internal } on nginx block
+
+1115
+admin cache debug
+
+1100
+configure multiple email locations
+update notes
+cincinnati facility
+
+1045
+update form email locations
+
+1030
+autoptimize cache size
+update form email locations
+
+1015
+lewis website
+
+1000
+lewis website
+
+900-940
+number systems
 
 330
 django script

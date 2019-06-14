@@ -1,0 +1,15 @@
+.sermons-container {
+	display: flex;
+	flex: 0 3 100%;
+	flex-flow: row wrap;
+	justify-content: center;
+	.sermon-section {
+		flex: 0 1 30%;
+		margin: 20px auto;
+		text-align: center;
+		.title {
+			margin: 15px auto;
+		}
+
+	}
+}

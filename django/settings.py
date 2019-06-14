@@ -125,3 +125,21 @@ RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 ## SITES
 
 SITE_ID = 1
+
+## AWS
+
+AWS_DEFAULT_ACL = None
+
+AWS_LOCATION = 'us-east-1'
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'river-podcast'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+DEFAULT_FILE_STORAGE = 'river.storage.MediaStorage'

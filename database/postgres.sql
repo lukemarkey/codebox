@@ -10,7 +10,7 @@ sudo su postgres
 dropdb ${DATABASE}
 createdb ${DATABASE}
 psql
-GRANT ALL PRIVILEGES ON DATABASE ${DATABASE} TO ${USER}
+GRANT ALL PRIVILEGES ON DATABASE ${DATABASE} TO ${USER};
 
 ###########################################################################
 ## SSH REMOTE POSTGRES DATABASE ON LOCALHOST

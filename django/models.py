@@ -61,7 +61,12 @@ class Model(models.Model):
 		return self.name
 		# return self.name.replace(" ", "_").lower # edit name for template queries
 
+	def get_absolute_url(self):
+        return ('events-detail', self.slug) ## DETAIL URL
+
 	def save(self, *args, **kwargs):
+		if not self.created_at:
+            self.created_at = timezone.now()
 		if not self.id: # ONLY UPDATE SLUG ON CREATE
 			self.slug = slugify(self.name) # AUTOMATICALLY UPDATE SLUG WITH MODEL NAME
 		super(Model, self).save(*args, **kwargs)

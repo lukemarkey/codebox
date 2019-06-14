@@ -1,0 +1,16 @@
+<div id="heroVideo">
+
+	<video id="videoFrame"
+	class="fillWidth"
+	poster="{% static "website/images/background/mobile-hero.png" %}"
+	muted loop playsinline autoplay>
+
+		<source src="{% static 'website/video/hero/river.mp4' %}" type='video/mp4'>
+		<source src="{% static 'website/video/hero/river.ogv' %}" type='video/ogv'>
+		<source src="{% static 'website/video/hero/river.webm' %}" type='video/webm' onerror="fallback(parentNode)">
+
+		<img class="mobile-hero-fallback" src="{% static "website/images/background/mobile-hero.png" %}" title="Your browser does not support the video tag.">
+
+	</video>
+
+</div>

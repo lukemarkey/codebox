@@ -119,11 +119,11 @@ server {
 	location = /robots.txt { log_not_found off; access_log off; allow all; }
 
 	# BROWSER CACHE
-	location ~* \.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|css|rss|atom|js|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$ {
-		expires max;
-		log_not_found off;
-		access_log off;
-	}
+	# location ~* \.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|css|rss|atom|js|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$ {
+	# 	expires max;
+	# 	log_not_found off;
+	# 	access_log off;
+	# }
 
 	# HARDEN UPLOADS
 	location ~* ^/wp-content/uploads/.*.(html|htm|shtml|php|js|swf)$ {
@@ -144,7 +144,7 @@ server {
 	location ~* wp-admin/includes { deny all; }
 	location ~* wp-includes/theme-compat/ { deny all; }
 	location ~* wp-includes/js/tinymce/langs/.*.php { deny all; }
-	location /wp-includes/ { internal; }
+	## location /wp-includes/ { internal; }
 
 	## NOTE: MUST ADD limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s; TO HTTP CONFIG
 	# DENY BRUTE FORCE ON WP-LOGIN

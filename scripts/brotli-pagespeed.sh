@@ -159,5 +159,5 @@ server {
 ## FLUSH PAGESPEED CACHE FOR APPLICATION UPDATES
 ###########################################################################
 
-sudo rm -rf /var/ngx_pagespeed_cache/* ## CURRENT WORKING
+## NOT PREFFERED sudo rm -rf /var/ngx_pagespeed_cache/*
 sudo touch /var/ngx_pagespeed_cache/cache.flush ## POSSIBLE WITH CONFIG

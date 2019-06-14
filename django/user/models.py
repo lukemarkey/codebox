@@ -15,10 +15,10 @@ class User(AbstractUser):
 
 	# DEFINE THE CUSTOM PERMISSIONS RELATED TO USER.
 	class Meta:
-		permissions = (
-			("Admin Permissions", "user_admin"),
-			("Member Permissions", "user_member"),
-		)
+		# permissions = (
+		# 	("Admin Permissions", "user_admin"),
+		# 	("Member Permissions", "user_member"),
+		# )
 
 	def __str__(self):
 		return self.username

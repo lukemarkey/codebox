@@ -82,11 +82,35 @@ sudo systemctl enable ${PROJECT_NAME}
 ## RESET MIGRATION FILES FOR DJANGO PROJECT
 ###########################################################################
 
+p manage.py showmigrations
+p manage.py migrate --fake website zero
+p manage.py showmigrations
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 find . -path "*/migrations/*.pyc"  -delete
 pip install --upgrade --force-reinstall django
+p manage.py showmigrations
+p manage.py makemigrations
+p manage.py migrate --fake-initial
 
 python manage.py flush --no-input # FLUSH DATABASE
+
+###########################################################################
+## MIGRATE APPS TO PREVENT ERRORS
+###########################################################################
+
+p manage.py migrate admin
+p manage.py migrate website
+p manage.py migrate contenttypes
+
+###########################################################################
+## DJANGO DUMP AND LOAD DATABASE DATA
+###########################################################################
+
+./manage.py dumpdata > database.json ## ENTIRE PROJECT
+./manage.py dumpdata website > website.json ## SPECIFIC APP
+./manage.py dumpdata website.model > website.model.json ## APP MODEL
+
+./manage.py loaddata database.json
 
 # VIEW: SEND MAIL
 

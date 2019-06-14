@@ -31,6 +31,7 @@ class HomePageView(TemplateView):
 
 	def get_context_data(self, **kwargs):
 	    context = super(HomePageView, self).get_context_data(**kwargs)
+	    parameter = self.kwargs['parameter'] ## GET URL PARAMETER
 	    return context
 
 ###########################################################################

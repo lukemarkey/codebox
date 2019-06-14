@@ -7,6 +7,10 @@ virtualenv -p python3 ${ENV_NAME}
 
 python3 manage.py createsuperuser
 
+## TEST MIGRATIONS
+
+p manage.py migrate --fake
+
 ## RESET MIGRATION FILES
 
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
