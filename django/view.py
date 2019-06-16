@@ -64,6 +64,17 @@ model = Model.objects.filter(pk=primary_key) ## GET MODEL TO BE UPDATED
 model = Model.objects.filter(pk=primary_key).update(element=updated_element) ## GET, UPDATE, AND SAVE
 
 ###########################################################################
+## VIEW QUERY FILTERS
+###########################################################################
+
+## ADDITIONAL PRODUCTS QUERY
+context['plaques'] = Product.objects.exclude(slug=self.kwargs['plaque_slug']).filter(categories__slug='tribute-plaques')[:6]
+
+## BASIC EXCLUDE AND FILTER BY LIST
+products = Product.objects.exclude(categories__slug='tribute-plaques')
+categories = ProductCategory.objects.filter(slug__in=['flags', 'crosses', 'military', 'special-forces', 'veterens', 'public-services'])
+
+###########################################################################
 ## VIEW METHOD FORM VALID SEND MAIL
 ###########################################################################
 

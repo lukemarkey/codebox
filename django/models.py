@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from datetime import date
+from django.urls import reverse
 
 # REFERENCE MODEL RELATIONSHIPS BY SLUG
 
@@ -62,7 +63,7 @@ class Model(models.Model):
 		# return self.name.replace(" ", "_").lower # edit name for template queries
 
 	def get_absolute_url(self):
-        return ('events-detail', self.slug) ## DETAIL URL
+        return reverse('website:shop-detail-page', kwargs={'slug': self.slug}) ## DETAIL URL
 
 	def save(self, *args, **kwargs):
 		if not self.created_at:

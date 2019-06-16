@@ -17,7 +17,11 @@
 {% endfor %}
 
 {###########################################################################
-## URL WITH PARAMETER
+## URLS
 ###########################################################################}
 
+{# WITH URL PARAMETER #}
 <a class="btn btn-default event-button" href="{% url 'events-detail' event.slug %}">Event Details</a>
+
+{# GET ABSOLUTE URL #}
+<a class="btn btn-default event-button" href="{{event.get_absolute_url}}">Event Details</a>

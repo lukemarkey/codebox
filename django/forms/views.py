@@ -21,6 +21,9 @@ class ContactPageView(FormView):
 		context = super(ContactPageView, self).get_context_data(**kwargs)
 		return context
 
+	def get_success_url(self):
+		return reverse_lazy('home')
+
 	def form_valid(self, form, **kwargs):
 		context = self.get_context_data(**kwargs)
 
@@ -55,10 +58,15 @@ class ContactPageView(FormView):
 			html_message = html_content
 		)
 
-		form.send_email()
+		## form.send_email() ## TODO - UPDATE FORM CLASS WITH SEND EMAIL FUNCTION
 
 		return super().form_valid(form) ## REDIRECT TO SUCCESS URL
 		## return self.render_to_response(context)
+
+	def form_invalid(self, form, **kwargs):
+		context = self.get_context_data(**kwargs)
+
+		return super().form_invalid(form)
 
 ###########################################################################
 ## BASIC TEMPLATE VIEW
