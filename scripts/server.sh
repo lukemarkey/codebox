@@ -16,6 +16,29 @@ mkdir ~/.ssh && touch ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
 chmod 644 ~/.ssh/authorized_keys
 
+## SET USER AND ROOT PASSWORDS
+su ${USERNAME} && passwd
+sudo su && passwd
+
+###########################################################################
+## ADD SSH BACKUP ACCOUNT TO SERVER
+###########################################################################
+
+sudo adduser ${USERNAME}
+
+sudo nano /etc/ssh/sshd_config
+---
+## REMOVE ROOT FROM ALLOWUSERS
+AllowUsers ${USERNAME}
+PasswordAuthentication yes
+PermitRootLogin no
+---
+sudo systemctl reload sshd
+
+## INSTALL FAIL2BAN
+
+sudo apt install fail2ban
+
 ## INSTALL AND SETUP UFW
 
 sudo apt-get install ufw

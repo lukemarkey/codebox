@@ -1,33 +1,34 @@
 #!/bin/bash
 
-## CHMOD +X ${BASH_FILE_PATH}
-## CHMOD -R 755 ${BACKUP_DIRECTORY}
+## crontab -e
+## ADD CRONTAB TO RUN DAILY @ 11PM FOR EACH DATABASE
+## * 23 * * * /home/luke/bash/backup_mongodb.sh django
+## TEST AUTOMATIC BACKUP
+## * * * * * /home/luke/bash/backup_mongodb.sh django
 
 ## CONFIGURATION
 
-BACKUP_DIRECTORY=/home/luke/backups/boats/database
-DATABASE=boats
-
-DRIVE_FOLDER_ID=0B5GFBdRKT1Wvcnc5R1hFd2lMRnM
+APP=$1
 
 ## VARIABLES
 
 MONGODUMP_PATH="/usr/bin/mongodump"
 
-DAYS_TO_KEEP=14
+BUCKET_NAME=luke-mongodb
 
-FILE_SUFFIX=_database
-FILE=`date +"%Y%m%d%H%M"`${FILE_SUFFIX}
-OUTPUT_FILE=${BACKUP_DIRECTORY}/${FILE}
+OUTPUT=/home/luke/mongodb
+
+TIMESTAMP=$(date +%F_%T | tr ':' '-')
+TEMP_FILE=$(mktemp tmp.XXXXXXXXXX)
+S3_FILE="s3://$BUCKET_NAME/$APP/$APP-backup-$TIMESTAMP"
 
 ## DUMP AND COMPRESS DATABASE BACKUP FILE
 
-${MONGODUMP_PATH} -d ${DATABASE}
+${MONGODUMP_PATH} --out "${OUTPUT}"
 
-mv dump ${OUTPUT_FILE}
-tar -zcvf ${OUTPUT_FILE}.tgz ${OUTPUT_FILE}
-rm -rf ${OUTPUT_FILE}
+tar -zcvf ${OUTPUT}.tgz ${OUTPUT}
 
-## BACKUP TO GOOGLE DRIVE ( GDRIVE )
+s3cmd put ${OUTPUT}.tgz $S3_FILE --encrypt
 
-/usr/sbin/drive upload --parent ${DRIVE_FOLDER_ID} --file ${OUTPUT_FILE}.tgz
+rm -rf ${OUTPUT}
+rm -rf ${OUTPUT}.tgz
