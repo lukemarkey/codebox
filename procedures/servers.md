@@ -11,21 +11,17 @@ lightsail:
 wp server: $5 monthy x3
 loadbalance $18 monthly
 
-office / server backups:
-compress script
-s3push script / debug s3cmd
-cronjobs
-s3 transfer / expiration policy
-s3 lifecycle
+s3 uploads
+Content-Type: application/gzip
+x-amz-meta-s3cmd-attrs: atime:1560965470/ctime:1560965293/gid:1000/gname:luke/md5:75d8266c1d925c8afe8a46cde1e44fde/mode:33204/mtime:1560965293/uid:1000/uname:luke
 
 ## SERVER BACKUPS
 
-doctl create volume
-doctl create snapshot
-
-database script
-s3cmd upload
-s3 lifecycle transfer / expiration
+office / server backups:
+compress script
+office s3push cronjobs
+s3 migration / expiration policy
+django compress script
 
 server load balancers:
 costs for server rollouts and load balancer
