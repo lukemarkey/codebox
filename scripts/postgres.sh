@@ -8,6 +8,21 @@ sudo apt install postgresql postgresql-contrib
 
 ssh -L 2222:localhost:5432 ${USERNAME}@${IP_ADDRESS}
 
+###########################################################################
+## PSQL CONNECT TO RDS
+###########################################################################
+
+psql --host=djangodb.c7fgpafxpkvc.us-east-1.rds.amazonaws.com \
+--port=5432 \
+--username=luke \
+--password \
+--dbname=portfolio << EOT \
+DROP DATABASE portfolio;
+CREATE DATABASE portfolio;
+GRANT ALL PRIVILEGES ON DATABASE portfolio TO luke;
+EOT
+
+
 ## BACKUP POSTGRES DATABASE ( FROM BASH TERMINAL - DO NOT USE PGADMIN WITH PSQL RESTORE)
 
 pg_dump -U ${DATABASE_USER} ${TARGET_DATABASE} -f ${DATABASE_BACKUP_FILENAME}.sql;

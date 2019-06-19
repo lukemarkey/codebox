@@ -19,7 +19,7 @@ BUCKET_NAME=luke-mongodb
 OUTPUT=/home/luke/mongodb
 
 TIMESTAMP=$(date +%F_%T | tr ':' '-')
-TEMP_FILE=$(mktemp tmp.XXXXXXXXXX)
+## TEMP_FILE=$(mktemp tmp.XXXXXXXXXX)
 S3_FILE="s3://$BUCKET_NAME/$APP/$APP-backup-$TIMESTAMP"
 
 ## DUMP AND COMPRESS DATABASE BACKUP FILE

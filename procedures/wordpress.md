@@ -5,6 +5,8 @@ autoclear cache
 
 updraftplus
 
+yoast
+
 ## BACKUPS
 
 s3 credentials: lastpass
