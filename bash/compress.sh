@@ -33,4 +33,4 @@ done
 
 ## UPDATE TAR
 rm -rf ${FILEPATH}
-/bin/tar -czvf ${FILEPATH,,} ${SOURCE} ## FILEPATH LOWERCASE
+/bin/tar -czf ${FILEPATH,,} ${SOURCE} ## FILEPATH LOWERCASE

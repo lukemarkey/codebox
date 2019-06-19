@@ -21,10 +21,12 @@ sudo dd if=/dev/sdb1 of=/dev/
 ## LOGICAL VOLUME MANAGEMENT
 ###########################################################################
 
+## GET DISK INFORMATION
+sudo fdisk -l
+
+
 ## INSTALL GPARTED
 sudo apt install gparted
-
-## INSTALL LVM
 sudo apt install lvm2
 
 ## LIST DISK PARTITIONS

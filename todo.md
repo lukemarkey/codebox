@@ -27,107 +27,22 @@ $480 victory hosting / july 04
 
 0800-1100 django rds
 
-1230-0300
 office / server backups:
 compress script
 s3push script / debug s3cmd
-cronjobs
+office s3push cronjobs
 s3 migration / expiration policy
-django backup
+django backups
+lvm.sh script
+django compress script
+
+s3 uploads
+Content-Type: application/gzip
+x-amz-meta-s3cmd-attrs: atime:1560965470/ctime:1560965293/gid:1000/gname:luke/md5:75d8266c1d925c8afe8a46cde1e44fde/mode:33204/mtime:1560965293/uid:1000/uname:luke
 
 ---
 
-0315
-django backup
 
-0230
-s3cmd debug
 
-0200
-s3cmd debug
-
-0130
-s3push.sh script
-
-0100
-compress script
-s3push.sh script
-
-1240
-compress script
-
-1130
-aws ec2 quote
-server duplication solutions
-
-1115
-aws ec2 quote
-aws lightsail
-
-1100
-django load balancer
-
-1030
-migrate django databases to rds
-
-1015
-migrate django databases to rds
--psql-connect-djangodb alias
--psql-rds-migrate alias
-
-1000
-debug vpc security groups
-
-0945
-debug vpc security groups
-iam access / database
-
-0930
-debug vpc security groups
-
-0915
-debug django rds access
-
-0900
-django rds
-debug django rds access
-
-0845
--restore-psql-rds alias
-
-0830
--restore-psql-rds alias
-
-0815
--restore-psql-rds alias
-
-0800
-django rds
-postgresql migrate alias
-
-0700
-portfolio data transfer to rds
-break
-
-0630
-portfolio rds
-
-0630
-database dedicated server
-rds security group
-
-0600
-office backups
-
-0400
-office backups
-
-0330
-office backups
-
-0300
-office backups
-
-0245
-today tasks
-office backups
+0340-0400
+office / server backups
