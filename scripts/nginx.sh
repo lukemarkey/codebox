@@ -2,12 +2,20 @@
 
 http {
 
+	## grep processor /proc/cpuinfo | wc -l FOR CPU CORES / WORKERS
+	worker_processes 2;
+	## ulimit -n (AMOUNT OF CONNECTIONS AT SAME TIME / SECOND)
+	worker_connections 1024;
+
 	server_tokens off;
 
 	add_header X-Frame-Options "SAMEORIGIN";
 	add_header X-Content-Type-Options nosniff;
 
 	add_header X-XSS-Protection "1; mode=block";
+
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log error;
 
 	## BROTLI SETTINGS
 
@@ -36,6 +44,8 @@ http {
 
 	pagespeed RewriteLevel CoreFilters;
 	pagespeed ListOutstandingUrlsOnError on;
+
+
 
 }
 

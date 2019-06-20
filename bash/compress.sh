@@ -24,7 +24,7 @@ else
 fi
 
 BACKUPDIR=/home/luke/backup/${1}
-FILEPATH=${BACKUPDIR}-${DATE}
+FILEPATH=${BACKUPDIR}-${DATE}.tar.gz
 
 ## PRINT VARIABLES
 for i in [${TIMESTAMP} ${SOURCE} ${BACKUPDIR} ${FILEPATH}]; do

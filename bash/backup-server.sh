@@ -1,5 +1,11 @@
 #!/bin/bash
 
+###########################################################################
+## BACKUP WEB SERVERS
+###########################################################################
+## SUDO CRONTAB SUNDAYS @ 6PM: 0 18 * * 0 /home/luke/codebox/bash/server-backup.sh /home /var/spool/mail /etc /root /boot /opt /usr $
+
+
 # SCRIPT VARIABLES
 OPTIND=1;
 SCRIPT=$( basename "${BASH_SOURCE[0]}" ); # SCRIPT NAME
@@ -12,13 +18,12 @@ DATE=`date +%Y-%m-%d`
 TIMESTAMP=$(date +%F_%T | tr ':' '-')
 
 ## BACKUP FILES
-FILES="/home /var/spool/mail /etc /root /boot /opt /usr /var/log"
-## FILES="/home"
-DESTINATION="/mnt/backup"
-FILENAME="django-${DATE}"
+
+FILES="$@"
+DESTINATION="/home/luke/backup"
+FILENAME="django-${DATE}.gz"
+
+echo "$@"
 
 ## BACKUP FILES TO DESTINATION
 /bin/tar -zcf ${DESTINATION}/${FILENAME} ${FILES}
-
-## LIST FILES TO CHECK FILE SIZES
-ls -lh ${DESTINATION}
