@@ -84,8 +84,10 @@ split --bytes=4194304 --verbose ${ZIPFILE} part
 ###########################################################################
 
 ## SYNC AWS S3 BUCKET TO LOCAL DIRECTORY
-
 aws s3 sync s3://${S3_BUCKET_NAME} ${LOCAL_DIRECTORY}
+
+## LIST ALL MULTIPART UPLOADS IN BUCKET
+aws s3api list-multipart-uploads --bucket ${BUCKET}
 
 ###########################################################################
 ## AWS S3 BUCKET POLICY

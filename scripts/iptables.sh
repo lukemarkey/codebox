@@ -1,7 +1,7 @@
 ## SHOW ALL ACTIVE IPTABLE RULES
 
 sudo iptables -S
-sudo iptbales -L
+sudo iptables -L
 
 ## SHOW PACKETS AND FILTER BY INPUT
 
@@ -46,12 +46,12 @@ sudo iptables -P INPUT DROP -w
 sudo iptables -P FORWARD DROP -w
 sudo iptables -P OUTPUT DROP -w
 
-sudo iptables -I INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT -w
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 sudo iptables -I OUTPUT -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT -w
 
 ## ACCEPT INCOMING SSH FROM TRUSTED ADDRESS AND DROP ALL OTHER CONNECTIONS
 
-iptables -A INPUT -p tcp -m state --state NEW --source 73.82.241.34 --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp -m state --state NEW --source 76.97.68.93 --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -j DROP
 
 

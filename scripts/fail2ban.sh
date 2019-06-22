@@ -56,7 +56,8 @@ sudo iptables -F
 ## BASE IPTABLES (ESTABLISHED, INTERNAL, SSH AND WEB SERVER ALLOWED)
 sudo iptables -A INPUT -i lo -j ACCEPT
 sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp -m state --state NEW --source 76.97.68.93 --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j DROP
 sudo iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
 sudo iptables -A INPUT -j DROP
 

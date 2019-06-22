@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # SCRIPT VARIABLES
 
 OPTIND=1;
@@ -20,21 +19,30 @@ S3DIR="s3://luke.h.markey-backup/django"
 DESTINATION="${S3DIR}/$FILENAME"
 
 ## TODO: RUN COMMAND AND GET FULL VARIABLE PRINTOUT
-BASE64MD5="$(/usr/bin/openssl md5 -binary ${BACKUP_FILE} | base64)"
+# BASE64MD5="$(/usr/bin/openssl md5 -binary ${BACKUP_FILE} | base64)"
 
-echo "$FOLDER"
-echo "$FILENAME"
-echo "$BASE64MD5"
-echo "$BACKUP_FILE"
-echo "$S3DIR"
-echo "$DESTINATION"
+# echo "$FOLDER"
+# echo "$FILENAME"
+# echo "$BASE64MD5"
+# echo "$BACKUP_FILE"
+# echo "$S3DIR"
+# echo "$DESTINATION"
 
 ## DEBUG MULTIPART UPLOAD FOR S3CMD
+## dry run: -n
+## verbose: -v
+## debug: -d
+
+## aws s3 cp /home/luke/backup/videos-2019-06-21.tar.gz s3://luke.h.markey-backup/office/videos/videos-2019-06-21.tar.gz
+
 ## s3cmd info s3://luke.h.markey-backup
-## s3cmd ls s3://luke.h.markey-backup/django/
-## TP1B5o9BG9VaBileUjGEGQ== test.gz
-## wu5hl1w7UzWODqcDN7Ms4Q== django-2019-06-19.tar.gz
+## s3cmd ls s3://luke.h.markey-backup/office/
+
+## md5sum videos-2019-06-21.tar.gz
+## aws s3api list-multipart-uploads --bucket luke.h.markey-backup
+## s3cmd abortmp s3://luke.h.markey-backup/office/videos/videos-2019-06-21.tar.gz .DbYXz_4oJdbbMTH966BBt1J.ukt4OC.LCntE17g9I5zD2qWYQ0LWFd_.QawSO7yfSyFOh5kM7wYNHsaa6U8Bzk6fwqgJPrzVv1zRYiA4XYtmky2mpV.qjHHfloI0hJu
+
 ## /usr/bin/s3cmd multipart s3://luke.h.markey-backup/django/django-2019-06-19.tar.gz
-## /usr/bin/s3cmd --upload-id=luke00 put /home/luke/backup/django-2019-06-19.tar.gz s3://luke.h.markey-backup/django/django-2019-06-19.tar.gz
-## s3cmd put --add-header=content-md5:wu5hl1w7UzWODqcDN7Ms4Q== test.gz s3://luke.h.markey-backup/django/test.gz
-/usr/bin/s3cmd --verbose --continue-put --add-header=content-md5:${BASE64MD5} put ${BACKUP_FILE} ${DESTINATION}
+## /usr/bin/s3cmd put -v --add-header=content-md5:d97557b96eceead5de4e4d706a15ce1b /home/luke/backup/videos-2019-06-21.tar.gz s3://luke.h.markey-backup/office/videos/videos-2019-06-21.tar.gz
+
+/usr/bin/aws s3 cp ${BACKUP_FILE} ${DESTINATION}

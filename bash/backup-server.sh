@@ -3,7 +3,7 @@
 ###########################################################################
 ## BACKUP WEB SERVERS
 ###########################################################################
-## SUDO CRONTAB SUNDAYS @ 6PM: 0 18 * * 0 /home/luke/codebox/bash/server-backup.sh /home /var/spool/mail /etc /root /boot /opt /usr $
+## SUDO CRONTAB SUNDAYS @ 12AM: 0 0 * * 0 /home/luke/codebox/bash/server-backup.sh /home /var/spool/mail /etc /root /boot /opt /usr /var/log
 
 
 # SCRIPT VARIABLES
@@ -19,11 +19,14 @@ TIMESTAMP=$(date +%F_%T | tr ':' '-')
 
 ## BACKUP FILES
 
+## FILES="/home /var/spool/mail /etc /root /boot /opt /usr /var/log"
 FILES="$@"
 DESTINATION="/home/luke/backup"
-FILENAME="django-${DATE}.gz"
+FILENAME="django-server-${DATE}.tar.gz"
 
 echo "$@"
 
+## DELETE OLD BACKUP
+/bin/rm -rf ${DESTINATION}/${FILENAME}*
 ## BACKUP FILES TO DESTINATION
 /bin/tar -zcf ${DESTINATION}/${FILENAME} ${FILES}

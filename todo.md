@@ -1,10 +1,9 @@
 ## WORK
 
 security updates:
-office / django / wordpress backups
+s3 backups
 s3 lock policy
 s3 automated transfers to cold storage
-
 server fail2ban
 server log monitoring
 server harden nginx
@@ -13,58 +12,189 @@ server metrics
 server netdata
 server sync public private keys
 server iptables
-
 aws console lock root
 aws iam user roles / permissions
 aws configure alerts
 
+victory website:
+add victrydane@aol.com paypal to checkout
+fix custom order "that is not listed"
+add multi tribute flag (2 plaques on flag)
+
+school:
+due sunday june 23 2019:
+hardware discussion 02 - completed
+hardware quiz 02 03
+hardware homework 01
+due wednesday june 26 2019:
+ethics module 04 05
+ethics discussion 04 05
+ethics assignment 03
+due sunday june 30 2019:
+hardware module 02
+hardware discussion 03
+hardware quiz 04 05
+
+email marketing:
+web-designer-03 / sunday june 23
+web-designer-04 / saturday june 22
+
 invoices:
 $500 aim cincinnati / monday june 24
-$480 victory hosting / july 04
+$300 victory hosting / thurday june 27
+
+backups:
+django backup size: 3.5 gigs
+wordpress backup size: 5 gigs
+disable suspend saturday night for backups
+configure aws cli for uploads
+exlude backup from compress script
+check all server crontabs
+
+florida:
+need oil change
+delray beach - 9.5 hours
+leave midnight july 03
+checkin 3pm-11pm
+july 04-07
+$130 - gas
+$100 - spending
+$80 - airbnb
 
 ## TODAY
 
-0800-1100 django rds
-0500-0700 django backups
-0830-1000 django fail2ban
-1000-1200 server harden nginx
+1130-1145 planning
+1145-1230 email marketing
+0140-0345 school
+0400-0600 school
+0600-0700 dinner
+0700-0800 work
+0800-0900 routine / schedule
 
-office / server backups:
-s3 migration / expiration policy
-django backups
-wordpress backups
-office backups
-home backups
+school / sunday june 22:
+hardware module 01 data formats notes
+hardware discussion 02 completed
+hardware reformat notes
+hardware quiz 02 03
+hardware homework 01
 
-aws s3:
-enable object lock
-enable compliance mode
-enable aes-256 encryption
-set 60 day retention period
-DEBUG MULTIPART UPLOAD FOR S3CMD
+email marketing:
+upload / segment new email lists
+schedule campaigns for new lists
+organize email lists
 
-server fail2ban:
-fail2ban.sh
-configure servers
-update iptables
-configure sendmail
-
-server log monitoring:
-logstash.sh
-
-server harden nginx:
-remove unnecessary modules
-filter user agents
-nginx load balancing / session persistence
-nginx rate / connection limit DDoS
-nginx http / server pagespeed optimization
-nginx wordpress conf / site
-diffie hellman ssl ciphers
+security updates:
+server compression scripts
+s3 upload scripts
+server cronjobs
+s3 check policies
+s3 transfer / expire settings
 
 ---
 
+0415
+break
+
+0400
+hardware discussion 02
+
+0345
+break
+
+0315
+hardware discussion 02
+
+0300
+hardware module 01 data formats notes
+
+0230
+hardware module 01 data formats notes
+
+0200
+hardware module 01 data formats notes
+
+0140
+hardware module 01 data formats notes
+
+0115
+hardware module 01
+
+1230
+break
+
+1215
+organize email lists
+
+1200
+new email campaign
+organize email campaign
+
+1145
+email marketing
+upload / segment new email lists
+
+1130
+planning
+
+0945
+s3 upload scripts
+
+0930
+s3 django backups
+s3 wordpress backups
+
+0915
+s3 upload
+
+0900
+s3 upload
+
+0845
+s3cmd multipart
+
+0830
+s3cmd multipart
+
+0815
+s3 office backups
+
+0800
+s3 office backups
+
+0745
+email campaign
+
+0730
+email template
+email start campaign
+
+0715
+email template
+email verification
+
+0645
+email template
+break
+
+0630
+email template
+
+0615
+email lists
+
+0600
+update portfolio
+email marketing platform
+
+0330
+logstash-elastic-kibana.sh
+
+0120
+logstash-elastic-kibana.sh
+
 1230
 wordress nginx http / server stub
+quick break
 
 1130
 harden nginx server block
