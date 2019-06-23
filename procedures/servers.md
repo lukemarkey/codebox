@@ -110,6 +110,9 @@ office:
 0 6 * * 0 /home/luke/bash/s3backup.sh projects
 0 6 * * 0 /home/luke/bash/s3backup.sh documents
 
+## SERVERS
+keys: django.pub wordpress.pub home.pub
+
 ## AWS S3
 luke.h.markey-backup policies:
 object lock: compliance 60 days

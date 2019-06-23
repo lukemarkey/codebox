@@ -73,7 +73,7 @@ security updates:
 s3 backups - in progress
 s3 lock policy - completed
 s3 automated transfers to cold storage - completed
-server ssh sync
+server ssh sync - completed
 server repository sync
 server fail2ban
 server log monitoring
@@ -94,6 +94,7 @@ office repository crontab
 s3 backups - home
 aws rds backups
 confirm bitbucket mfa
+ssh server between server
 
 school / sunday june 22:
 hardware module 01 data formats notes
@@ -111,6 +112,7 @@ organize email lists
 
 0800-0900
 server ssh sync
+server repository sync
 
 0700-0800
 s3 automated transfers to cold storage
