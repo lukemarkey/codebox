@@ -1,5 +1,7 @@
 ## MONTHLY SERVER MANAGEMENT
 
+curl https://github.com/lukemarkey.keys
+
 sudo apt-get -y update && sudo apt-get -y upgrade
 
 wordpress use:
@@ -40,6 +42,9 @@ compress script
 office s3push cronjobs
 s3 migration / expiration policy
 django compress script
+sudo apt install python3-pip
+pip3 install awscli --upgrade
+aws configure
 
 server load balancers:
 costs for server rollouts and load balancer
@@ -104,3 +109,10 @@ office:
 0 6 * * 0 /home/luke/bash/s3backup.sh assets
 0 6 * * 0 /home/luke/bash/s3backup.sh projects
 0 6 * * 0 /home/luke/bash/s3backup.sh documents
+
+## AWS S3
+luke.h.markey-backup policies:
+object lock: compliance 60 days
+transition to glacier: 60 days
+expires: 90 days
+clean incomplete multipart: 7 days

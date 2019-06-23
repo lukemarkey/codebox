@@ -49,6 +49,8 @@ wordpress backup size: 5 gigs
 disable suspend saturday night for backups
 configure aws cli for uploads
 exlude backup from compress script
+crontab repository push
+server sync ssh keys
 check all server crontabs
 
 florida:
@@ -63,13 +65,35 @@ $80 - airbnb
 
 ## TODAY
 
-1130-1145 planning
-1145-1230 email marketing
-0140-0345 school
-0400-0600 school
-0600-0700 dinner
-0700-0800 work
-0800-0900 routine / schedule
+0700-1200 5.0
+1200-0500 5.0
+0500-1000 5.0
+
+security updates:
+s3 backups - in progress
+s3 lock policy - completed
+s3 automated transfers to cold storage - completed
+server ssh sync
+server repository sync
+server fail2ban
+server log monitoring
+server harden nginx
+server cloud firewall
+server metrics
+server netdata
+server sync public private keys
+server iptables
+aws console lock root
+aws iam user roles / permissions
+aws configure alerts
+
+circle back to:
+check s3 to glacier automated transition
+consolidate s3 buckets
+office repository crontab
+s3 backups - home
+aws rds backups
+confirm bitbucket mfa
 
 school / sunday june 22:
 hardware module 01 data formats notes
@@ -83,14 +107,15 @@ upload / segment new email lists
 schedule campaigns for new lists
 organize email lists
 
-security updates:
-server compression scripts
-s3 upload scripts
-server cronjobs
-s3 check policies
-s3 transfer / expire settings
-
 ---
+
+0800-0900
+server ssh sync
+
+0700-0800
+s3 automated transfers to cold storage
+s3 lock policy
+s3 backups
 
 0415
 break
