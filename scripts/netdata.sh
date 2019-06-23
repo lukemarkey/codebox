@@ -15,4 +15,11 @@
 ## ONE-LINE INSTALL / CONFIGURE / UPDATE NETDATA
 bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 ## ACCESS NETDATA @ http://209.97.158.46:19999
-curl -Ss http://209.97.158.46:19999
+
+## UPDATE NETDATA CONF
+[global]
+	history = 86400 ## 24 HOURS - 600MB RAM
+
+## ADD NGINX SERVER BLOCK FOR NETDATA
+sudo nano /etc/nginx/sites-available/netdata
+

@@ -39,7 +39,6 @@ sudo iptables -X
 sudo apt-get install iptables-persistent
 sudo netfilter-persistent save
 
-
 ## DENY ALL ALLOW OUTGOING
 
 sudo iptables -P INPUT DROP -w

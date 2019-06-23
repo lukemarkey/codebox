@@ -91,7 +91,7 @@ server sync public private keys - completed
 server iptables
 aws console lock root - completed
 aws iam user roles / permissions - completed
-aws configure alerts
+aws configure alerts - completed
 
 circle back to:
 check s3 to glacier automated transition
@@ -111,6 +111,8 @@ remote server ssh update
 chromebook ssh update
 debug office backup remove old backups
 aws restructure user permissions / roles
+aws resource groups
+aws cloud watch dashboards
 
 school / sunday june 22:
 hardware module 01 data formats notes
@@ -125,6 +127,9 @@ schedule campaigns for new lists
 organize email lists
 
 ---
+
+0300-0400
+server netdata
 
 0200-0300
 server sync public private keys
