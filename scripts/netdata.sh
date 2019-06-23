@@ -27,3 +27,29 @@ sudo printf "luke:`openssl passwd -apr1`" > /etc/nginx/htpasswd.netdata
 
 ## ADD HTTPS SUPPORT
 certbot --nginx -d netdata.django.atlwebsitedesign.com
+
+## CHECK NETDATA CONF ONLINE
+https://netdata.atlwebsitedesign.com/netdata.conf
+
+## CONFIGURE NETDATA.CONF
+[plugins]
+        # PATH environment variable = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sb$
+        # PYTHONPATH environment variable =
+        proc = yes
+        diskspace = yes
+        cgroups = yes
+        tc = yes
+        idlejitter = yes
+        enable running new plugins = yes
+        check for new plugins every = 60
+        node.d = yes
+        go.d = yes
+        fping = yes
+        charts.d = yes
+        apps = yes
+        python.d = yes
+
+## ADD PLUGINS TO NETDATA
+[netdata.runtime_web_log_nginx]
+	enabled = yes
+

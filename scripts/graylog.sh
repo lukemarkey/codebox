@@ -61,3 +61,6 @@ sudo certbot --nginx -d graylog.atlwebsitedesign.com
 sudo iptables -t nat -A PREROUTING -p tcp --dport 514 -j REDIRECT --to 10514
 sudo iptables -t nat -A PREROUTING -p udp --dport 514 -j REDIRECT --to 10514
 sudo iptables-save
+
+## PICKING BACK UP
+sudo systemctl start /enable graylog-server / mongod / elasticsearch

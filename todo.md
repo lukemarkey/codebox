@@ -69,6 +69,7 @@ aws resource groups
 aws cloud watch dashboards
 netdata debug node urls
 netdata alarms
+aws elasticsearch service
 
 school / sunday june 23:
 hardware module 01 data formats notes
@@ -82,6 +83,13 @@ upload / segment new email lists
 schedule campaigns for new lists
 organize email lists
 
+server netdata:
+office config global
+netdata configure metrics
+netdata simple home dashboard
+netdata configure alarms
+netdata node debug http https
+
 ---
 
 0400-0800
@@ -90,6 +98,12 @@ hardware discussion 02 - completed
 hardware reformat notes
 hardware quiz 02 03
 hardware homework 01
+
+1230-0200
+server netdata
+
+1200-1230
+break
 
 1030-1200
 server log monitoring
