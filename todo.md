@@ -133,6 +133,9 @@ beafort
 dishes
 shower
 
+0700-0800
+server netdata
+
 0600-0700
 server repository sync
 server log monitoring

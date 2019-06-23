@@ -20,7 +20,11 @@ sudo sendmailconfig
 echo "Subject: sendmail test" | sendmail -v luke@markey.agency
 sendmail -vt < ~/mail.txt
 ...
+To: luke@markey.agency
+Subject: sendmail test two
+From: luke@home
 
+And here goes the e-mail body, test test test..
 ...
 
 

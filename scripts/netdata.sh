@@ -23,4 +23,7 @@ bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 
 ## ADD NGINX SERVER BLOCK FOR NETDATA
 sudo nano /etc/nginx/sites-available/netdata
+sudo printf "luke:`openssl passwd -apr1`" > /etc/nginx/htpasswd.netdata
 
+## ADD HTTPS SUPPORT
+certbot --nginx -d netdata.django.atlwebsitedesign.com
