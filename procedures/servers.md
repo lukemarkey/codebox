@@ -44,7 +44,7 @@ imcp all
 
 aws s3:
 enable object lock
-enable governance mode
+enable compliance mode
 set 60 day retention period
 
 server fail2ban:

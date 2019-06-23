@@ -88,7 +88,7 @@ server cloud firewall - completed
 server metrics - in progress
 server netdata - in progress
 server sync public private keys - completed
-server iptables
+server iptables - completed
 aws console lock root - completed
 aws iam user roles / permissions - completed
 aws configure alerts - completed
@@ -135,6 +135,7 @@ shower
 
 0500-0600
 server iptables
+s3 backups
 
 0400-0500
 server netdata
