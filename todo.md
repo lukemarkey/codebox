@@ -85,12 +85,12 @@ server fail2ban - completed
 server log monitoring - in progress
 server harden nginx - completed
 server cloud firewall - completed
-server metrics - completed
+server metrics - in progress
 server netdata
-server sync public private keys
+server sync public private keys - completed
 server iptables
-aws console lock root
-aws iam user roles / permissions
+aws console lock root - completed
+aws iam user roles / permissions - completed
 aws configure alerts
 
 circle back to:
@@ -107,6 +107,10 @@ nginx reconfigure bad bot blocker
 server intrusion detection
 server / office update / dist-upgrade
 office update firewall
+remote server ssh update
+chromebook ssh update
+debug office backup remove old backups
+aws restructure user permissions / roles
 
 school / sunday june 22:
 hardware module 01 data formats notes
@@ -123,7 +127,10 @@ organize email lists
 ---
 
 0200-0300
-
+server sync public private keys
+aws console lock root
+aws iam user roles / permissions
+aws configure alerts
 
 0100-0200
 server netdata
