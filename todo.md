@@ -72,7 +72,7 @@ netdata alarms
 
 school / sunday june 23:
 hardware module 01 data formats notes
-hardware discussion 02 completed
+hardware discussion 02 - completed
 hardware reformat notes
 hardware quiz 02 03
 hardware homework 01
@@ -84,7 +84,14 @@ organize email lists
 
 ---
 
-1030-1130
+0400-0800
+hardware module 01 data formats notes
+hardware discussion 02 - completed
+hardware reformat notes
+hardware quiz 02 03
+hardware homework 01
+
+1030-1200
 server log monitoring
 
 0930-1030

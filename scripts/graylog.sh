@@ -56,20 +56,8 @@ server {
 sudo ln -s /etc/nginx/sites-enabled/
 sudo certbot --nginx -d graylog.atlwebsitedesign.com
 
-## CONFIGURE RSYSLOG FORWARDING TO GRAYLOG FOR REMOTE (REMOTE SYS LOG)
-sudo apt install -y rsyslog
-sudo nano /etc/rsyslog.d/30-graylog.conf
-...
-## UDP
-*.* @graylog.atlwebsitedesign.com:514;RSYSLOG_SyslogProtocol23Format
-## TCP
-*.* @@graylog.atlwebsitedesign.com:514;RSYSLOG_SyslogProtocol23Format
-...
-
-
-## UPDATE IPTABLES FOR RSYSLOG PORT
-iptables -A INPUT -p tcp --dport 514 -j ACCEPT
-iptables -A INPUT -p udp --dport 514 -j ACCEPT
-
-## CHECK PORT 514 CONNECTIONS
-ss -tunelp | grep 514
+## START INPUT ON PRIVILEDGED PORT (BELOW 1024)
+## OUTSIDE CLIENTS CAN SEND TO 514 / LOCALLY REROUTED TO 10514
+sudo iptables -t nat -A PREROUTING -p tcp --dport 514 -j REDIRECT --to 10514
+sudo iptables -t nat -A PREROUTING -p udp --dport 514 -j REDIRECT --to 10514
+sudo iptables-save
