@@ -19,6 +19,7 @@ bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 ## UPDATE NETDATA CONF
 [global]
 	history = 86400 ## 24 HOURS - 600MB RAM
+	access log = none
 
 ## ADD NGINX SERVER BLOCK FOR NETDATA
 sudo nano /etc/nginx/sites-available/netdata

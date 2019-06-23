@@ -1,3 +1,11 @@
+###########################################################################
+## IPTABLES PROCEDURE
+###########################################################################
+
+## REMOVE ALL UFW REFERENCES IN IPTABLES
+for ufw in `iptables -L |grep ufw|awk '{ print $2 }'`; do iptables -F $ufw; done
+for ufw in `iptables -L |grep ufw|awk '{ print $2 }'`; do iptables -X $ufw; done
+
 ## SHOW ALL ACTIVE IPTABLE RULES
 
 sudo iptables -S
@@ -29,6 +37,7 @@ sudo iptables -P INPUT ACCEPT
 sudo iptables -P FORWARD ACCEPT
 sudo iptables -P OUTPUT ACCEPT
 
+sudo iptables -F
 sudo iptables -t nat -F
 sudo iptables -t mangle -F
 sudo iptables -F

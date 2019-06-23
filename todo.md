@@ -86,7 +86,7 @@ server log monitoring - in progress
 server harden nginx - completed
 server cloud firewall - completed
 server metrics - in progress
-server netdata
+server netdata - in progress
 server sync public private keys - completed
 server iptables
 aws console lock root - completed
@@ -127,6 +127,17 @@ schedule campaigns for new lists
 organize email lists
 
 ---
+
+0900
+beafort
+dishes
+shower
+
+0500-0600
+server iptables
+
+0400-0500
+server netdata
 
 0300-0400
 server netdata

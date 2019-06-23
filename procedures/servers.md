@@ -119,7 +119,12 @@ home:
 209.97.158.46
 home.pub
 
+django:
+159.65.218.140
 django.pub
+
+wordpress:
+167.99.158.138
 wordpress.pub
 
 ## AWS S3
