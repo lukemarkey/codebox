@@ -76,7 +76,7 @@ server cloud firewall
 0500-1000 5.0
 
 security updates:
-s3 backups - in progress
+s3 backups - completed
 s3 lock policy - completed
 s3 automated transfers to cold storage - completed
 server ssh sync - completed
@@ -132,6 +132,9 @@ organize email lists
 beafort
 dishes
 shower
+
+0600-0700
+server repository sync
 
 0500-0600
 server iptables
