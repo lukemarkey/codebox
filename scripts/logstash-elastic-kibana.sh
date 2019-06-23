@@ -28,6 +28,10 @@ sudo systemctl enable elasticsearch
 sudo systemctl start elasticsearch
 ## UPDATE ELASTICSEARCH_YML
 network.host = localhost
+indices.fielddata.cache.size: 20%
+## UPDATE JVM_OPTIONS
+-Xms1g ## MIN HEAP SPACE 1GIG (HALF OF TOTAL RAM)
+-Xmx1g ## MAX HEAP SPACE 1GIG (HALF OF TOTAL RAM)
 ## CHECK IF ELASTICSEARCH IS RUNNING
 curl -X GET "localhost:9200/"
 
@@ -63,6 +67,8 @@ sudo apt install logstash
 sudo nano /etc/logstash/conf.d/02-beats-input.conf
 ## SYSTEM LOGS FILTER
 sudo nano /etc/logstash/conf.d/10-syslog-filter.conf
+## NGINX LOGS FILTER
+sudo nano /etc/logstash/conf.d/11-nginx-filter.conf
 ## ELASTICSEARCH OUTPUT
 sudo nano /etc/logstash/conf.d/30-elasticsearch-output.conf
 

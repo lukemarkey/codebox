@@ -22,6 +22,13 @@ server log monitoring:
 kibana auth
 filebeat modules
 beats central management
+filebeat index lifecycle management
+
+https://www.elastic.co/guide/en/beats/filebeat/current/ilm.html
+elasticsearch:
+jvm.options - heap size half of total ram
+elasticsearch.yml - indices.fielddata.cache.size: 20%
+elasticsearch index lifecycle
 
 firewall:
 inbound:

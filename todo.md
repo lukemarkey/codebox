@@ -66,6 +66,12 @@ $80 - airbnb
 ## TODAY
 
 0700-1200 5.0
+s3 lock policy
+s3 automated transfers to cold storage
+server ssh sync / server fail2ban
+server harden nginx
+server cloud firewall
+
 1200-0500 5.0
 0500-1000 5.0
 
@@ -115,6 +121,9 @@ schedule campaigns for new lists
 organize email lists
 
 ---
+
+1200-0100
+server log monitoring
 
 1100-1200
 server cloud firewall
