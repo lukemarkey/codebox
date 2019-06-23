@@ -17,18 +17,17 @@ loadbalance $18 monthly
 
 ## SERVER PROCEDURES
 
+https://www.elastic.co/guide/en/beats/filebeat/current/ilm.html
 https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html
 server log monitoring:
 kibana auth
 filebeat modules
 beats central management
 filebeat index lifecycle management
+kibana home dashboard configuration
 
-https://www.elastic.co/guide/en/beats/filebeat/current/ilm.html
-elasticsearch:
-jvm.options - heap size half of total ram
-elasticsearch.yml - indices.fielddata.cache.size: 20%
-elasticsearch index lifecycle
+server metrics:
+configure netdata
 
 firewall:
 inbound:
@@ -113,12 +112,15 @@ gsutil cp to bucket
 
 ## SERVERS
 office:
-id_rsa.pub
 76.97.68.93
+id_rsa.pub
+
+home:
+209.97.158.46
+home.pub
 
 django.pub
 wordpress.pub
-home.pub
 
 ## AWS S3
 luke.h.markey-backup policies:

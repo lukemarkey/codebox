@@ -82,10 +82,10 @@ s3 automated transfers to cold storage - completed
 server ssh sync - completed
 server repository sync - in progress
 server fail2ban - completed
-server log monitoring
+server log monitoring - in progress
 server harden nginx - completed
 server cloud firewall - completed
-server metrics
+server metrics - completed
 server netdata
 server sync public private keys
 server iptables
@@ -121,6 +121,13 @@ schedule campaigns for new lists
 organize email lists
 
 ---
+
+0200-0300
+
+
+0100-0200
+server netdata
+server metrics
 
 1200-0100
 server log monitoring

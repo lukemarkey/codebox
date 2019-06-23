@@ -1,12 +1,18 @@
-## UPDATE REPOSITORIES
-sudo apt update -y
-sudo apt upgrade -y
+###########################################################################
+## NGINX DOCUMENTATION PROCEDURE
+#
+# - the daemon     at /usr/sbin/netdata
+# - config files   in /etc/netdata
+# - web files      in /usr/share/netdata
+# - plugins        in /usr/libexec/netdata
+# - cache files    in /var/cache/netdata
+# - db files       in /var/lib/netdata
+# - log files      in /var/log/netdata
+# - pid file       at /var/run/netdata.pid
+# - logrotate file at /etc/logrotate.d/netdata
+###########################################################################
 
-## INSTALL DEPENDENCIES
-sudo apt-get install zlib1g-dev uuid-dev libmnl-dev pkg-config curl gcc make autoconf autoconf-archive autogen automake python python-yaml python-mysqldb nodejs lm-sensors python-psycopg2 netcat git -y
-
-## CLONE LATEST VERSION OF NETDATA FROM GITHUB REPOSITORY
-git clone https://github.com/firehol/netdata.git --depth=1 ~/netdata
-
-## RUN INSTALL SCRIPT
-sudo ~/netdata/netdata-installer.sh
+## ONE-LINE INSTALL / CONFIGURE / UPDATE NETDATA
+bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+## ACCESS NETDATA @ http://209.97.158.46:19999
+curl -Ss http://209.97.158.46:19999
