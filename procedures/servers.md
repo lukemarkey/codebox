@@ -3,6 +3,8 @@
 curl https://github.com/lukemarkey.keys
 
 sudo apt-get -y update && sudo apt-get -y upgrade
+sudo apt-get -y update && sudo apt-get -y dist-upgrade
+sudo aptitude -y update && sudo aptitude -y full-upgrade
 
 wordpress use:
 0.5GB ram

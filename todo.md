@@ -75,9 +75,9 @@ s3 lock policy - completed
 s3 automated transfers to cold storage - completed
 server ssh sync - completed
 server repository sync - in progress
-server fail2ban
+server fail2ban - completed
 server log monitoring
-server harden nginx
+server harden nginx - completed
 server cloud firewall
 server metrics
 server netdata
@@ -96,6 +96,9 @@ aws rds backups
 confirm bitbucket mfa
 ssh server between server
 ssh repository sync alias / automated pull
+nginx limit_req for logins
+nginx reconfigure bad bot blocker
+server intrusion detection
 
 school / sunday june 22:
 hardware module 01 data formats notes
@@ -110,6 +113,16 @@ schedule campaigns for new lists
 organize email lists
 
 ---
+
+1200
+important
+
+1100-1200
+
+
+1000-1100
+server harden nginx
+server cloud firewall
 
 0900-1000
 server fail2ban

@@ -1,5 +1,4 @@
 server {
-	listen 443 ssl http2;
 
 	server_name aimresearchservices.com;
 	root /usr/share/nginx/aim_production;
@@ -48,11 +47,6 @@ server {
 	location ~* wp-includes/js/tinymce/langs/.*.php { deny all; }
 	## location /wp-includes/ { internal; }
 
-	location = /wp-login.php {
-	    limit_req zone=one burst=1 nodelay;
-	    fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-	}
-
 	location ~ /\.ht {
 		deny all;
 	}
@@ -87,15 +81,6 @@ server {
 	pagespeed EnableFilters insert_dns_prefetch;
 
 	pagespeed EnableFilters debug;
-
-
-    ssl_certificate /etc/letsencrypt/live/aimresearchservices.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/aimresearchservices.com/privkey.pem; # managed by Certbot
-    ## include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
-ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-
 }
 server {
     if ($host = aimresearchservices.com) {
@@ -104,10 +89,7 @@ server {
 
 	server_name aimresearchservices.com;
     return 404; # managed by Certbot
-
-
 }
-
 
 server {
 	listen 80;
