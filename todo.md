@@ -80,7 +80,7 @@ s3 backups - completed
 s3 lock policy - completed
 s3 automated transfers to cold storage - completed
 server ssh sync - completed
-server repository sync - in progress
+server repository sync - completed
 server fail2ban - completed
 server log monitoring - in progress
 server harden nginx - completed
@@ -135,6 +135,7 @@ shower
 
 0600-0700
 server repository sync
+server log monitoring
 
 0500-0600
 server iptables

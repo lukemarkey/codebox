@@ -4,11 +4,25 @@ sudo apt-get install logwatch
 sudo nano /usr/share/logwatch/default.conf/logwatch.conf
 ---
 Output = mail
-Format = text
+Format = file
 MailTo = luke.h.markey@gmail.com
-MailFrom = postmaster@mg.markey.agency
-Detail = High
+MailFrom = Logwatch
+Detail = 5
+Filename = /tmp/logwatch
 ---
+
+sudo apt-get install sendmail
+nano /etc/hosts
+...
+127.0.0.1 localhost yourhostname
+...
+sudo sendmailconfig
+echo "Subject: sendmail test" | sendmail -v luke@markey.agency
+sendmail -vt < ~/mail.txt
+...
+
+...
+
 
 ## MAIL SETUP
 
