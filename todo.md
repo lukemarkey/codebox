@@ -74,7 +74,7 @@ s3 backups - in progress
 s3 lock policy - completed
 s3 automated transfers to cold storage - completed
 server ssh sync - completed
-server repository sync
+server repository sync - in progress
 server fail2ban
 server log monitoring
 server harden nginx
@@ -95,6 +95,7 @@ s3 backups - home
 aws rds backups
 confirm bitbucket mfa
 ssh server between server
+ssh repository sync alias / automated pull
 
 school / sunday june 22:
 hardware module 01 data formats notes
@@ -109,6 +110,9 @@ schedule campaigns for new lists
 organize email lists
 
 ---
+
+0900-1000
+server fail2ban
 
 0800-0900
 server ssh sync
