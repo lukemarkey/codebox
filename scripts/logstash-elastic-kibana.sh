@@ -40,6 +40,7 @@ sudo systemctl start kibana
 server.host = "localhost"
 
 ## CREATE KIBANA ADMIN FOR NGINX
+sudo apt-get install apache2-utils
 echo "luke:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
 
 ## CREATE KIBANA SERVERBLOCK
@@ -100,5 +101,8 @@ sudo systemctl enable filebeat
 ## TEST FOR FILEBEAT TO SHIP SYSLOG AND AUTH LOG TO LOGSTASH - THEN LOADS TO ELASTICSEARCH
 curl -XGET 'http://localhost:9200/filebeat-*/_search?pretty'
 
-## ENABLE IPTABLES MODULE
+## LIST AVAILABLE MODULES
 sudo filebeat modules list
+
+## NGINX MODULE
+sudo filebeat modules enable nginx

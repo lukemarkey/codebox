@@ -15,18 +15,26 @@ lightsail:
 wp server: $5 monthy x3
 loadbalance $18 monthly
 
-## SERVER BACKUPS
+## SERVER PROCEDURES
 
-server log monitoring:
 https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html
+server log monitoring:
+kibana auth
+filebeat modules
+beats central management
 
-server harden nginx:
-remove unnecessary modules
-filter user agents
-nginx load balancing / session persistence
-nginx rate / connection limit DDoS
-nginx http / server pagespeed optimization
-diffie hellman ssl ciphers
+firewall:
+inbound:
+ssh tcp 22 (office IP)
+dns tcp 53
+dns udp 53
+http tcp 80
+https tcp 443
+postgresql tcp 5432
+outbound:
+tcp all
+udp all
+imcp all
 
 aws s3:
 enable object lock
@@ -96,24 +104,14 @@ cold storage backups:
 config gscloud script
 gsutil cp to bucket
 
-## SERVER CRONJOBS
-
-office:
-## RUN COMPRESS EVERY SUNDAY AT 12:00AM
-0 0 * * 0 /home/luke/codebox/bash/compress.sh Videos
-0 0 * * 0 /home/luke/codebox/bash/compress.sh codebox toolbox kirin .config/sublime-text-3/Packages/User/snippets
-0 0 * * 0 /home/luke/codebox/bash/compress.sh assets
-0 0 * * 0 /home/luke/codebox/bash/compress.sh projects
-0 0 * * 0 /home/luke/codebox/bash/compress.sh Documents
-## BACKUP ASSETS EVERY SUNDAY @ 6:00AM
-0 6 * * 0 /home/luke/bash/s3backup.sh videos
-0 6 * * 0 /home/luke/bash/s3backup.sh codebox
-0 6 * * 0 /home/luke/bash/s3backup.sh assets
-0 6 * * 0 /home/luke/bash/s3backup.sh projects
-0 6 * * 0 /home/luke/bash/s3backup.sh documents
-
 ## SERVERS
-keys: django.pub wordpress.pub home.pub
+office:
+id_rsa.pub
+76.97.68.93
+
+django.pub
+wordpress.pub
+home.pub
 
 ## AWS S3
 luke.h.markey-backup policies:

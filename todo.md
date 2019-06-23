@@ -78,7 +78,7 @@ server repository sync - in progress
 server fail2ban - completed
 server log monitoring
 server harden nginx - completed
-server cloud firewall
+server cloud firewall - completed
 server metrics
 server netdata
 server sync public private keys
@@ -99,6 +99,8 @@ ssh repository sync alias / automated pull
 nginx limit_req for logins
 nginx reconfigure bad bot blocker
 server intrusion detection
+server / office update / dist-upgrade
+office update firewall
 
 school / sunday june 22:
 hardware module 01 data formats notes
@@ -114,11 +116,9 @@ organize email lists
 
 ---
 
-1200
-important
-
 1100-1200
-
+server cloud firewall
+server log monitoring
 
 1000-1100
 server harden nginx
