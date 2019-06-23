@@ -21,9 +21,10 @@ server {
     }
 
     location /stub_status {
-        stub_status on;
+        stub_status;
         access_log off;
-        allow 127.0.0.1;
+        ## TODO: CHECK ALLOWABLE IPS
+        allow 76.97.68.93; ## OFFICE IP (ACCESSING MACHINE)
         deny all;
     }
 

@@ -49,7 +49,33 @@ https://netdata.atlwebsitedesign.com/netdata.conf
         apps = yes
         python.d = yes
 
-## ADD PLUGINS TO NETDATA
-[netdata.runtime_web_log_nginx]
-	enabled = yes
+## ENABLE NGINX PLUGIN
+## TODO: RESTRICT STUB_STATUS TO NECESSARY IPS
+nginx -V 2>&1 | grep -o with-http_stub_status_module ## CHECK IF STUB STATUS MODULE AVAILABLE
+sudo su -s /bin/bash netdata
+. edit-config python.d/nginx.conf
+...
+update_every: 10
+priority: 90100
+
+localhost:
+  name : 'local'
+  url  : 'https://netdata.atlwebsitedesign.com/stub_status'
+
+localipv4:
+  name : 'local'
+  url : 'https://netdata.atlwebsitedesign.com/stub_status'
+
+localipv6:
+  name : 'local'
+  url: 'https://netdata.atlwebsitedesign.com/stub_status'
+...
+sudo service netdata restart
+
+## ENABLE NGINX WEB LOG
+sudo su -s /bin/bash netdata
+. edit-config python.d/web_log.conf
+...
+...
+sudo service netdata restart
 
