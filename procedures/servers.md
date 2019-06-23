@@ -17,6 +17,22 @@ loadbalance $18 monthly
 
 ## SERVER PROCEDURES
 
+security updates:
+s3 backups
+s3 lock policy
+s3 automated transfers to cold storage
+server fail2ban
+server log monitoring
+server harden nginx
+server cloud firewall
+server metrics
+server netdata
+server sync public private keys
+server iptables
+aws console lock root
+aws iam user roles / permissions
+aws configure alerts
+
 https://www.elastic.co/guide/en/beats/filebeat/current/ilm.html
 https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html
 server log monitoring:

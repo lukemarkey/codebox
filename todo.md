@@ -1,20 +1,8 @@
 ## WORK
 
 security updates:
-s3 backups
-s3 lock policy
-s3 automated transfers to cold storage
-server fail2ban
-server log monitoring
-server harden nginx
-server cloud firewall
-server metrics
-server netdata
-server sync public private keys
-server iptables
-aws console lock root
-aws iam user roles / permissions
-aws configure alerts
+server log monitoring - in progress
+server netdata - in progress
 
 victory website:
 add victrydane@aol.com paypal to checkout
@@ -43,16 +31,6 @@ invoices:
 $500 aim cincinnati / monday june 24
 $300 victory hosting / thurday june 27
 
-backups:
-django backup size: 3.5 gigs
-wordpress backup size: 5 gigs
-disable suspend saturday night for backups
-configure aws cli for uploads
-exlude backup from compress script
-crontab repository push
-server sync ssh keys
-check all server crontabs
-
 florida:
 need oil change
 delray beach - 9.5 hours
@@ -65,33 +43,9 @@ $80 - airbnb
 
 ## TODAY
 
-0700-1200 5.0
-s3 lock policy
-s3 automated transfers to cold storage
-server ssh sync / server fail2ban
-server harden nginx
-server cloud firewall
-
-1200-0500 5.0
-0500-1000 5.0
-
 security updates:
-s3 backups - completed
-s3 lock policy - completed
-s3 automated transfers to cold storage - completed
-server ssh sync - completed
-server repository sync - completed
-server fail2ban - completed
 server log monitoring - in progress
-server harden nginx - completed
-server cloud firewall - completed
-server metrics - in progress
 server netdata - in progress
-server sync public private keys - completed
-server iptables - completed
-aws console lock root - completed
-aws iam user roles / permissions - completed
-aws configure alerts - completed
 
 circle back to:
 check s3 to glacier automated transition
@@ -113,8 +67,10 @@ debug office backup remove old backups
 aws restructure user permissions / roles
 aws resource groups
 aws cloud watch dashboards
+netdata debug node urls
+netdata alarms
 
-school / sunday june 22:
+school / sunday june 23:
 hardware module 01 data formats notes
 hardware discussion 02 completed
 hardware reformat notes
@@ -128,10 +84,11 @@ organize email lists
 
 ---
 
-0900
-beafort
-dishes
-shower
+0930-1030
+server log monitoring
+
+0800-0900
+server metrics
 
 0700-0800
 server netdata
