@@ -66,6 +66,7 @@ netdata alarms
 aws elasticsearch service
 mfa google accounts
 @atlwebsitedesign.com emails
+clutch vpn scrape
 
 school:
 due sunday june 23 2019:
@@ -94,13 +95,21 @@ tasks:
 marketing
 school
 
-0330-0430
-marketing
+0330-0430 marketing
+0430-0600 school
+0700-0800 work
+1000-1100 bed
 
 ---
 
-0345
+0445
+ethics discussion 04 05
 
+0430
+email web-designer-03
+
+0345
+cleanup / detail contact lists
 
 0330
 phone automated marketing
