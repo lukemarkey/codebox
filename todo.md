@@ -67,13 +67,14 @@ aws elasticsearch service
 mfa google accounts
 @atlwebsitedesign.com emails
 clutch vpn scrape
+aws kms
+aws policies
 
 school:
 due sunday june 23 2019:
 hardware homework 01
 due wednesday june 26 2019:
 ethics module 04 05
-ethics discussion 04 05
 ethics assignment 03
 
 marketing:
@@ -91,16 +92,21 @@ netdata simple home dashboard
 netdata configure alarms
 netdata node debug http https
 
-tasks:
-marketing
-school
-
-0330-0430 marketing
-0430-0600 school
-0700-0800 work
-1000-1100 bed
+security:
+aws elasticsearch
+server graylog
+server netdata
+scrape clutch
+marketing emails
 
 ---
+
+0600
+aws elasticsearch
+
+
+0530
+graylog
 
 0445
 ethics discussion 04 05

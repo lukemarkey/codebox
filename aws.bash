@@ -34,25 +34,25 @@ split --bytes=4194304 --verbose ${ZIPFILE} part
 {
     "Version":"2012-10-17",
     "Statement":[
-       {
-          "Sid":"cross-account-upload",
-          "Principal": {
-             "AWS": [
-                "${AWS_USER_ID}"
-             ]
-          },
-          "Effect":"Allow",
-          "Action": [
-             "glacier:UploadArchive",
-             "glacier:InitiateMultipartUpload",
-             "glacier:AbortMultipartUpload",
-             "glacier:CompleteMultipartUpload"
-          ],
-          "Resource": [
-             "${AWS_RESOURCE_ID}"
-          ]
-       }
-    ]
+    {
+      "Sid":"cross-account-upload",
+      "Principal": {
+         "AWS": [
+         "${AWS_USER_ID}"
+         ]
+     },
+     "Effect":"Allow",
+     "Action": [
+     "glacier:UploadArchive",
+     "glacier:InitiateMultipartUpload",
+     "glacier:AbortMultipartUpload",
+     "glacier:CompleteMultipartUpload"
+     ],
+     "Resource": [
+     "${AWS_RESOURCE_ID}"
+     ]
+ }
+ ]
 }
 
 ###########################################################################
@@ -60,23 +60,23 @@ split --bytes=4194304 --verbose ${ZIPFILE} part
 ###########################################################################
 
 {
-     "Version":"2012-10-17",
-     "Statement":[
-      {
-         "Sid": "deny-based-on-archive-age",
-         "Principal": "*",
-         "Effect": "Deny",
-         "Action": "glacier:DeleteArchive",
-         "Resource": [
-            "${AWS_RESOURCE_ID}"
-         ],
-         "Condition": {
-             "NumericLessThan" : {
-                  "glacier:ArchiveAgeInDays" : "365"
-             }
-         }
+ "Version":"2012-10-17",
+ "Statement":[
+ {
+     "Sid": "deny-based-on-archive-age",
+     "Principal": "*",
+     "Effect": "Deny",
+     "Action": "glacier:DeleteArchive",
+     "Resource": [
+     "${AWS_RESOURCE_ID}"
+     ],
+     "Condition": {
+         "NumericLessThan" : {
+          "glacier:ArchiveAgeInDays" : "365"
       }
-   ]
+  }
+}
+]
 }
 
 ###########################################################################
@@ -96,12 +96,30 @@ aws s3api list-multipart-uploads --bucket ${BUCKET}
 {
     "Version": "2012-10-17",
     "Statement": [
-        {
-            "Sid": "AddPerm",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::${S3_BUCKET_NAME}/*"
-        }
+    {
+        "Sid": "AddPerm",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::${S3_BUCKET_NAME}/*"
+    }
     ]
+}
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+    {
+        "Sid": "AddPerm",
+        "Effect": "Deny",
+        "NotPrincipal": {
+          "AWS": [
+              "arn:aws:iam::416074996998:user/luke"
+          ]
+      },
+      "NotPrincipal": "",
+      "Action": "*",
+      "Resource": "arn:aws:es:us-east-1:416074996998:domain/elasticsearch"
+  }
+  ]
 }

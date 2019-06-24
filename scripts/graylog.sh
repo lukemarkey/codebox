@@ -2,8 +2,10 @@
 
 ###########################################################################
 ## GRAYLOG INSTALL PROCEDURE
+# version - 3.0
 ###########################################################################
 
+## INSTALL / CONFIGURE JAVA 8
 sudo apt-get -y update && sudo apt-get -y upgrade
 sudo apt-get install -y apt-transport-https openjdk-8-jre-headless uuid-runtime pwgen
 
