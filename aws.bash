@@ -114,12 +114,38 @@ aws s3api list-multipart-uploads --bucket ${BUCKET}
         "Effect": "Deny",
         "NotPrincipal": {
           "AWS": [
-              "arn:aws:iam::416074996998:user/luke"
+            "arn:aws:iam::416074996998:user/luke",
+            "arn:aws:iam::416074996998:root"
           ]
       },
-      "NotPrincipal": "",
-      "Action": "*",
+      "Action": "es:*",
       "Resource": "arn:aws:es:us-east-1:416074996998:domain/elasticsearch"
   }
+}
+
+###########################################################################
+## AWS POLICY ALLOW ACCESS FROM SPECIFIC IP ADDRESS
+###########################################################################
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "es:*"
+      ],
+      "Condition": {
+        "IpAddress": {
+          "aws:SourceIp": [
+            "76.97.68.93/32"
+          ]
+        }
+      },
+      "Resource": "arn:aws:es:us-east-1:416074996998:domain/elasticsearch/*"
+    }
   ]
 }

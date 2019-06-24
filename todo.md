@@ -67,8 +67,7 @@ aws elasticsearch service
 mfa google accounts
 @atlwebsitedesign.com emails
 clutch vpn scrape
-aws kms
-aws policies
+aws kms / policies
 
 school:
 due sunday june 23 2019:
@@ -92,12 +91,10 @@ netdata simple home dashboard
 netdata configure alarms
 netdata node debug http https
 
-security:
-aws elasticsearch
-server graylog
-server netdata
-scrape clutch
-marketing emails
+todo:
+clutch graphic designer list
+sendinblue / constant contact campaign
+
 
 ---
 
