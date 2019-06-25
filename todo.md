@@ -84,27 +84,20 @@ callfire: $500 for 5000 calls
 robotalker: $299 for 10000 calls
 
 sales:
-call marco
-call david
-call lawyer
-call chase
-
-marco:
-callback tonight
-
-allsynced:
-allsynced.com
-functioning as telecom partner of lsi tech group
-send over source code of website
-chase@lsitechgroup.com
-follow up next week
-contact@all-synced.com
-678-680-8761
-
-0900-1000 sales
-1000-1100 lsitech
+marco callback / june 25
+lawyer followup / july 01
+allsynced followup / july 01
 
 ---
+
+1200
+lunch / beaufort
+
+1130
+allsynced website
+
+1100
+allsynced website
 
 1030
 lsitech backups
