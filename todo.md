@@ -5,6 +5,13 @@ add victrydane@aol.com paypal to checkout
 fix custom order "that is not listed"
 add multi tribute flag (2 plaques on flag)
 
+aim website:
+pagespeed
+search / analytics
+email cathy marketing reports
+email donna quote for seo
+search competition between domains
+
 school:
 due sunday june 23 2019:
 hardware homework 01
@@ -17,9 +24,9 @@ hardware module 02
 hardware discussion 03
 hardware quiz 04 05
 
-invoices:
+sales:
 $500 aim cincinnati / monday june 24
-$300 victory hosting / thurday june 27
+$300 victory hosting / thursday june 27
 
 florida:
 need oil change
@@ -76,10 +83,23 @@ email web-designer-04 / saturday june 22
 callfire: $500 for 5000 calls
 robotalker: $299 for 10000 calls
 
-todo:
-clutch graphic designer list
-sendinblue / constant contact campaign
-if not clutch then find another source to use
+sales:
+call marco
+call david
+call lawyer
+call chase
+
+marco:
+callback tonight
+
+allsynced:
+allsynced.com
+functioning as telecom partner of lsi tech group
+send over source code of website
+chase@lsitechgroup.com
+follow up next week
+contact@all-synced.com
+678-680-8761
 
 ---
 
