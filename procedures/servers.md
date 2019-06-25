@@ -33,6 +33,13 @@ aws console lock root
 aws iam user roles / permissions
 aws configure alerts
 
+server netdata:
+netdata deny stub_status server block
+netdata configure metrics - django / wordpress / office
+netdata simple home dashboard
+netdata configure alarms
+netdata node debug http https
+
 https://www.elastic.co/guide/en/beats/filebeat/current/ilm.html
 https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html
 server log monitoring:

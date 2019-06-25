@@ -1,9 +1,5 @@
 ## WORK
 
-security updates:
-server log monitoring - in progress
-server netdata - in progress
-
 victory website:
 add victrydane@aol.com paypal to checkout
 fix custom order "that is not listed"
@@ -36,10 +32,6 @@ $100 - spending
 $80 - airbnb
 
 ## TODAY
-
-security updates:
-server log monitoring - in progress
-server netdata - in progress
 
 circle back to:
 check s3 to glacier automated transition
@@ -84,23 +76,15 @@ email web-designer-04 / saturday june 22
 callfire: $500 for 5000 calls
 robotalker: $299 for 10000 calls
 
-server netdata:
-netdata deny stub_status server block
-netdata configure metrics - django / wordpress / office
-netdata simple home dashboard
-netdata configure alarms
-netdata node debug http https
-
 todo:
 clutch graphic designer list
 sendinblue / constant contact campaign
-
+if not clutch then find another source to use
 
 ---
 
 0600
 aws elasticsearch
-
 
 0530
 graylog
