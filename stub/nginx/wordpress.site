@@ -94,5 +94,5 @@ server {
 server {
 	listen 80;
 	server_name aimresearchnetwork.net www.aimresearchnetwork.net www.assistanceinmarketing.com assistanceinmarketing.com www.aimresearchservices.com;
-	return 301 https://aimresearchservices.com$request_uri;
+	return 301 $scheme://$host$request_uri;
 }

@@ -101,7 +101,20 @@ follow up next week
 contact@all-synced.com
 678-680-8761
 
+0900-1000 sales
+1000-1100 lsitech
+
 ---
+
+1030
+lsitech backups
+
+1000
+lsitech backups
+allsynced migration
+
+0900
+sales
 
 0600
 aws elasticsearch
