@@ -38,7 +38,6 @@ lawyer followup / july 01
 allsynced followup / july 01
 david followup / july 20
 $500 aim cincinnati / monday june 24
-$300 victory hosting / thursday june 27
 
 florida:
 need oil change
@@ -82,20 +81,7 @@ aws kms / policies
 server change ssh port
 
 school:
-due sunday june 23 2019:
-hardware homework 01
-due wednesday june 26 2019:
-ethics module 04 05
-ethics assignment 03
 
-today:
-updated scrape
-call marco
-
-yp scrape
-update contact list
-sendinblue campaign
-constant contact campaign
 
 ---
 
