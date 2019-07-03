@@ -12,19 +12,31 @@ email cathy marketing reports
 email donna quote for seo
 search competition between domains
 
+allsynced:
+crypto import
+gem business page import
+content / design updates
+branding
+email / analytics / plugins
+mobile testing
+
+marco:
+no referrals for website work
+back in town sunday night
+https://vitalacbd.com
+follow up schedule meeting / june 30
+
 school:
-due sunday june 23 2019:
-hardware homework 01
-due wednesday june 26 2019:
-ethics module 04 05
-ethics discussion 04 05
-ethics assignment 03
-due sunday june 30 2019:
-hardware module 02
-hardware discussion 03
-hardware quiz 04 05
+
+marketing:
+robotalker: $299 for 10000 calls
+cheep postcards: http://www.cheep-cheep.com/
 
 sales:
+marco callback / june 25
+lawyer followup / july 01
+allsynced followup / july 01
+david followup / july 20
 $500 aim cincinnati / monday june 24
 $300 victory hosting / thursday june 27
 
@@ -67,6 +79,7 @@ mfa google accounts
 @atlwebsitedesign.com emails
 clutch vpn scrape
 aws kms / policies
+server change ssh port
 
 school:
 due sunday june 23 2019:
@@ -75,55 +88,62 @@ due wednesday june 26 2019:
 ethics module 04 05
 ethics assignment 03
 
-marketing:
-phone automated marketing
-cleanup / detail contact lists
-email web-designer-03 / sunday june 23
-email web-designer-04 / saturday june 22
-callfire: $500 for 5000 calls
-robotalker: $299 for 10000 calls
+today:
+updated scrape
+call marco
 
-sales:
-marco callback / june 25
-lawyer followup / july 01
-allsynced followup / july 01
+yp scrape
+update contact list
+sendinblue campaign
+constant contact campaign
 
 ---
 
+0630
+break
+make breakfast for tiffany
+
+1230
+scrape yp
+break
+
 1200
-lunch / beaufort
+scrape yp
 
 1130
-allsynced website
+scrape cleanup
 
 1100
-allsynced website
+scrape cleanup
 
 1030
-lsitech backups
+scrape cleanup
 
 1000
-lsitech backups
-allsynced migration
+scrape cleanup
+
+0930
+sendinblue campaign
+break
 
 0900
-sales
+email list
+
+0830
+yp scrape
+
+0800
+call marco
+
+0730
+yp scrape
+
+0700
+yp scrape
+
+0630
+mailgun
+yp scrape
 
 0600
-aws elasticsearch
-
-0530
-graylog
-
-0445
-ethics discussion 04 05
-
-0430
-email web-designer-03
-
-0345
-cleanup / detail contact lists
-
-0330
-phone automated marketing
-cleanup / detail contact lists
+planning

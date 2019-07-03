@@ -4,3 +4,10 @@
 # BASIC FOR LOOP (START, STOP[EXCLUSIVE], STEP)
 for x in range(0, 100, 1):
 	print(x)
+
+## WHILE TRUE LOOP
+while True:
+	if condition:
+		continue
+	else:
+		break

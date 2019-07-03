@@ -17,6 +17,9 @@ append() #: This function append string to the file instead of overwriting the f
 import os
 os.path.abspath('~/file.txt')
 
+## TOUCH FILE
+open('file.txt', 'a').close()
+
 # OPEN AND READ FILE
 with open('file.txt', 'r') as f:
 	for line in f:

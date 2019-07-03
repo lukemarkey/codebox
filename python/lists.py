@@ -3,7 +3,7 @@
 listx.append(elem) # adds single element to end of the list
 
 del listx[0] # removes the first element from the list
-del listx[-1]
+del listx[-1] # removes last element
 
 listx.pop(0) # removes the first element from the list and returns it
 
