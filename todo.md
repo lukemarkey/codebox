@@ -1,13 +1,13 @@
 ## WORK
 
-victory website:
-add victrydane@aol.com paypal to checkout
-fix custom order "that is not listed"
-add multi tribute flag (2 plaques on flag)
-
 aim website:
+needs seo reports / quote for seo
+looking for seo content specialist
+needs quote for backend respondents profile
+email campaign through respondents
 pagespeed
 search / analytics
+autoptimize cache size warning fix
 email cathy marketing reports
 email donna quote for seo
 search competition between domains
@@ -39,50 +39,27 @@ allsynced followup / july 01
 david followup / july 20
 $500 aim cincinnati / monday june 24
 
-florida:
-need oil change
-delray beach - 9.5 hours
-leave midnight july 03
-checkin 3pm-11pm
-july 04-07
-$130 - gas
-$100 - spending
-$80 - airbnb
-test
+server:
+wordpress:
+allsynced spam filter
 
 ## TODAY
 
-circle back to:
-check s3 to glacier automated transition
-consolidate s3 buckets
-office repository crontab
-s3 backups - home
-aws rds backups
-confirm bitbucket mfa
-ssh server between server
-ssh repository sync alias / automated pull
-nginx limit_req for logins
-nginx reconfigure bad bot blocker
-server intrusion detection
-server / office update / dist-upgrade
-office update firewall
-remote server ssh update
-chromebook ssh update
-debug office backup remove old backups
-aws restructure user permissions / roles
-aws resource groups
-aws cloud watch dashboards
-netdata debug node urls
-netdata alarms
-aws elasticsearch service
-mfa google accounts
-@atlwebsitedesign.com emails
-clutch vpn scrape
-aws kms / policies
-server change ssh port
-
 school:
+ethics discussion 08
+hardware:
+discussion 05
+quiz 06 07 (operating systems)
+homework 02
 
+victory website:
+add victrydane@aol.com paypal to checkout
+fix custom order "that is not listed"
+add multi tribute flag (2 plaques on flag)
+add:
+sheriff tribute flag
+emt tribute flag
+product structured data fix
 
 ---
 

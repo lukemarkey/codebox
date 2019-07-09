@@ -17,6 +17,38 @@ loadbalance $18 monthly
 
 ## SERVER PROCEDURES
 
+circle back to:
+check s3 to glacier automated transition
+consolidate s3 buckets
+office repository crontab
+s3 backups - home
+aws rds backups
+confirm bitbucket mfa
+ssh server between server
+ssh repository sync alias / automated pull
+nginx limit_req for logins
+nginx reconfigure bad bot blocker
+server intrusion detection
+server / office update / dist-upgrade
+office update firewall
+remote server ssh update
+chromebook ssh update
+debug office backup remove old backups
+aws restructure user permissions / roles
+aws resource groups
+aws cloud watch dashboards
+netdata debug node urls
+netdata alarms
+aws elasticsearch service
+mfa google accounts
+@atlwebsitedesign.com emails
+clutch vpn scrape
+aws kms / policies
+server change ssh port
+rtcwake for office cronjob execute
+
+school:
+
 security updates:
 s3 backups
 s3 lock policy
