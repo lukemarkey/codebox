@@ -21,3 +21,9 @@ sudo nano /etc/nginx/sites-available/${DOMAIN}
 ---
 ${NGINX_CERBOT_SERVER_BLOCK}
 ---
+
+server {
+        #listen 80;
+        server_name aimresearchnetwork.com aimresearchservices.com aimresearchnetwork.net www.aimrese$
+        return 301 https://www.aimresearchnetwork.com$request_uri;
+}
