@@ -1,0 +1,27 @@
+{###########################################################################
+## LIST ALL MANY TO MANY CATEGORIES IN LISTING
+###########################################################################}
+
+{% for category in listing.categories.all %}
+	<span>{{ category }}</span>
+{% endfor %}
+
+{###########################################################################
+## CHECK CHILD OBJECTS FOR PROPERTY
+###########################################################################}
+
+{% for content in page.page_content.all %}
+	{% ifequal content.name 'Homepage Banner' %}
+		<h1>{{content.heading}}</h1>
+	{% endifequal %}
+{% endfor %}
+
+{###########################################################################
+## URLS
+###########################################################################}
+
+{# WITH URL PARAMETER #}
+<a class="btn btn-default event-button" href="{% url 'events-detail' event.slug %}">Event Details</a>
+
+{# GET ABSOLUTE URL #}
+<a class="btn btn-default event-button" href="{{event.get_absolute_url}}">Event Details</a>

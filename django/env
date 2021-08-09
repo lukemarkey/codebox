@@ -1,0 +1,16 @@
+SETTINGS_DEBUG=True
+SETTINGS_SECRET_KEY=!onqstczhs-xi#*vqy7)8ux2j7d*cz$_&^o^)_tdvv8orw2-)x
+
+DATABASE_ENGINE=django.db.backends.postgresql
+DATABASE_NAME=database
+DATABASE_USER=username
+DATABASE_PASSWORD=password
+
+EMAIL_USE_TLS=True
+EMAIL_HOST=smtp.mailgun.org
+EMAIL_PORT=587
+EMAIL_HOST_USER=email
+EMAIL_HOST_PASSWORD=password
+
+RECAPTCHA_PUBLIC_KEY=key
+RECAPTCHA_PRIVATE_KEY=key

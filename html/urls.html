@@ -1,0 +1,10 @@
+{###########################################################################
+## ADD EVENT TO GOOGLE CALENDAR
+###########################################################################}
+
+<a class="btn btn-success event-button" href="https://www.google.com/calendar/render?
+action=TEMPLATE&amp;
+text={{event.name}}&amp;
+dates={{event.date|date:"Ymd\\THis"}}/{{event.date|date:"Ymd\\THis\\Z"}}&amp;
+location={{event.location|default:"River Church, 2335 Sixes Rd, Canton, GA 30114, USA"}}&amp;
+details={{event.description|default:"Join us Sundays at 10:20AM for fellowship, worship and community"}}" target="_blank">Add to Calendar</a>

@@ -1,0 +1,64 @@
+<div id="heroVideo">
+
+	<video id="videoFrame"
+	class="fillWidth"
+	poster="{% static "website/images/background/mobile-hero.png" %}"
+	muted loop playsinline autoplay>
+
+		<source src="{% static 'website/video/hero/river.mp4' %}" type='video/mp4'>
+		<source src="{% static 'website/video/hero/river.ogv' %}" type='video/ogv'>
+		<source src="{% static 'website/video/hero/river.webm' %}" type='video/webm' onerror="fallback(parentNode)">
+
+		<img class="mobile-hero-fallback" src="{% static "website/images/background/mobile-hero.png" %}" title="Your browser does not support the video tag.">
+
+	</video>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(event) {
+	(function($) {
+
+		// console.log('loading');
+
+		$('div.homepage-hero-module').css('height', $(window).height()+'px');
+		$('div.filter').css('height', $(window).height()+'px');
+
+		// VIDEO MODAL POPUP INIT
+		$(".js-modal-btn-new").modalVideo();
+		$(".js-modal-btn-exist").modalVideo();
+
+		var videoFrameElement = document.getElementById('videoFrame');
+		videoFrameElement.play();
+
+		// GET SCREEN ASPECT RATIO
+		var vidRatio = 1280 / 720;
+		var wrapperHeight = $('#heroVideo').height();
+		var wrapperWidth = $('#heroVideo').width();
+		var wrapperRatio = wrapperWidth / wrapperHeight;
+
+		// SET ASPECT RATIO FOR VIDEO
+		if (wrapperRatio < vidRatio) {
+			var newWidth  = wrapperWidth  * (vidRatio/wrapperRatio);
+			$('#videoFrame').css({'min-height':wrapperHeight+'px', 'min-width':newWidth+'px', 'position':'absolute', 'left':'50%','margin-left':'-'+(newWidth/2)+'px'});
+			$('.mobile-hero-fallback').css({'min-height':wrapperHeight+'px', 'min-width':newWidth+'px', 'position':'absolute', 'left':'50%','margin-left':'-'+(newWidth/2)+'px'});
+		}
+		else {
+			var newHeight  = wrapperHeight   * (wrapperRatio / vidRatio);
+			$('#videoFrame').css({'min-height':newHeight+'px', 'min-width':wrapperWidth+'px', 'position':'absolute', 'top':'50%','margin-top':'-'+(newHeight/2)+'px'});
+			$('.mobile-hero-fallback').css({'min-height':newHeight+'px', 'min-width':wrapperWidth+'px', 'position':'absolute', 'top':'50%','margin-top':'-'+(newHeight/2)+'px'});
+		}
+
+	})(jQuery);
+});
+
+// FALLBACK TO IMAGE IF VIDEO UNABLE TO PLAY
+function fallback(video) {
+	var img = video.querySelector('img');
+	if (img) {
+		video.parentNode.replaceChild(img, video);
+	}
+}
+
+</script>

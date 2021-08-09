@@ -1,0 +1,160 @@
+#!/bin/bash
+
+# ASSIGN VARIABLES
+
+DJANGO_PROJECT=test
+PSQL_DB_PASS=markey\$24
+
+# CASCADE VARIABLES
+
+PSQL_DB_USER=${DJANGO_PROJECT}
+PSQL_DB_NAME=${DJANGO_PROJECT}
+DJANGO_DIRECTORY=/home/luke/projects/${DJANGO_PROJECT}
+
+# SCRIPT VARIABLES
+
+OPTIND=1;
+SCRIPT=$( basename "${BASH_SOURCE[0]}" ); # SCRIPT NAME
+SCRIPTPATH=$( cd "$(dirname "$0")" || exit; pwd -P ); # ABSOLUTE PATH OF SCRIPT DIRECTORY
+SCRIPTMOD=$( stat -c %Y "${SCRIPTPATH}"/"${SCRIPT}" ); # SCRIPT LAST MOD TIMESTAMP
+NUMARGS=$#; # NUMBER OF ARGUMENTS PASS FROM CLI
+
+# HELP FUNCTION
+
+function HELP {
+  echo -e \\n"Help Documentation for ${SCRIPT^^}"
+  echo -e "Last Modified: $(date -d @${SCRIPTMOD})"\\n
+  echo -e "${c[cyan]}${SCRIPT^^} Recognizes the Following Flags: ${c[nc]}"\\n
+
+  # LIST & DESCRIBE AVAILABLE ARGUMENTS
+  echo -e "--database ${c[nc]}          --Add a New PostgreSQL Database and User Role"
+  echo -e "--env ${c[nc]}               --Update Django Environment File"
+  echo -e "--settings ${c[nc]}          --Update Django Settings File for Database"\\n
+  exit 1
+}
+
+# CHECK ARGUMENTS. IF NONE ARE PASSED, PRINT HELP & EXIT
+
+if [ "${NUMARGS}" -eq 0 ]; then
+  HELP
+fi
+
+function PSQL_RUN_DB {
+
+# CHECK IF DB EXISTS & VERIFY OVERRIDE
+
+if psql -lqt | cut -d \| -f 1 | grep -qw ${PSQL_DB_NAME}; then
+	read -rp "Database ${PSQL_DB_NAME} already found. Do you want to override? [y/n]: "
+	if [[ ${REPLY,,} =~ ^[Yy]$ ]]; then
+		sudo su - postgres <<EOT
+		psql
+		DROP DATABASE ${PSQL_DB_NAME};
+		\q
+		exit
+EOT
+	else
+		exit 1
+	fi
+fi
+
+# CHECK IF ROLE EXISTS & VERIFY OVERRIDE
+
+if psql -t -c '\du' | cut -d \| -f 1 | grep -qw ${PSQL_DB_USER}; then
+	read -rp "Role ${PSQL_DB_USER} already found. Do you want to override? [y/n]: "
+	if [[ ${REPLY,,} =~ ^[Yy]$ ]]; then
+		sudo su - postgres <<EOT
+		psql
+		DROP USER ${PSQL_DB_USER};
+		\q
+		exit
+EOT
+	else
+		exit 1
+	fi
+fi
+
+# LOGIN
+
+sudo su - postgres <<EOT
+psql
+CREATE DATABASE ${PSQL_DB_NAME};
+CREATE USER ${PSQL_DB_USER} WITH PASSWORD '${PSQL_DB_PASS}';
+ALTER ROLE ${PSQL_DB_USER} SET client_encoding TO 'utf8';
+ALTER ROLE ${PSQL_DB_USER} SET default_transaction_isolation TO 'read committed';
+ALTER ROLE ${PSQL_DB_USER} SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE ${PSQL_DB_NAME} to ${PSQL_DB_USER};
+\q
+exit
+EOT
+
+}
+
+function PSQL_RUN_ENV {
+
+# EXPORT BASH VARIBLES TO PERL ENV
+
+export PSQL_DB_USER
+export PSQL_DB_PASS
+export PSQL_DB_NAME
+
+cd ${DJANGO_DIRECTORY}
+
+# CHECK IF POSTGRES ADDED TO ENV FILE
+
+if grep -Fxq '# POSTGRES' .env; then
+	read -rp "PostgreSQL environment variables already detected. Override? [y/n]: "
+	if [[ ${REPLY,,} =~ ^[Nn]$ ]]; then
+		exit 1
+	else
+		perl -pi -e 's/PSQL_DB_NAME.*/PSQL_DB_NAME=$ENV{PSQL_DB_NAME}/g' ./.env
+		perl -pi -e 's/PSQL_DB_USER.*/PSQL_DB_USER=$ENV{PSQL_DB_USER}/g' ./.env
+		perl -pi -e 's/PSQL_DB_PASS.*/PSQL_DB_PASS=$ENV{PSQL_DB_PASS}/g' ./.env
+		exit 1
+	fi
+fi
+
+# ADD POSTGRES VARIABLES TO ENV FILE
+
+cat <<EOT >> .env
+
+# POSTGRES
+PSQL_DB_NAME=${PSQL_DB_NAME}
+PSQL_DB_USER=${PSQL_DB_USER}
+PSQL_DB_PASS=${PSQL_DB_PASS}
+EOT
+}
+
+function PSQL_RUN_SETTINGS {
+
+cd ${DJANGO_DIRECTORY}
+
+read -r -d '' DB_ENTRY <<EOT
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME': config('PSQL_DB_NAME'),
+		'USER': config('PSQL_DB_USER'),
+		'PASSWORD': config('PSQL_DB_PASS'),
+		'HOST': 'localhost',
+		'PORT': '',
+	}
+}
+EOT
+
+export DB_ENTRY
+
+perl -0777 -pi -e 's/DATABASES.*\t}\n}/$ENV{DB_ENTRY}/s' ./${DJANGO_PROJECT}/settings.py
+
+}
+
+# SET FLAGS
+while test $# -gt 0 ; do
+  case "$1" in
+    -d|--database ) PSQL_RUN_DB ; shift ;;
+    -e|--env ) PSQL_RUN_ENV ; shift ;;
+	-s|--settings ) PSQL_RUN_SETTINGS ; shift ;;
+    -- ) shift ; break ;;
+    * ) break ;;
+  esac
+done
+

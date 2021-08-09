@@ -1,0 +1,98 @@
+server {
+
+	server_name aimresearchservices.com;
+	root /usr/share/nginx/aim_production;
+	index index.php index.html index.htm;
+
+	location / {
+		try_files $uri $uri/ /index.php$is_args$args;
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		include fastcgi_params;
+		root /usr/share/nginx/aim_production;
+	}
+
+	location = /favicon.ico { log_not_found off; access_log off; }
+	location = /robots.txt { log_not_found off; access_log off; allow all; }
+
+	# BROWSER CACHE
+	#location ~* .(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|css|rss|atom|js|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$ {
+		#expires max;
+		#log_not_found off;
+		#access_log off;
+	#}
+
+	## PROXY MICRO CACHE
+	proxy_cache cache;
+	proxy_cache_valid 200 1s;
+
+	# HARDEN UPLOADS
+	location ~* ^/wp-content/uploads/.*.(html|htm|shtml|php|js|swf)$ {
+		deny all;
+	}
+
+	# DENY ACCESS TO WP-CONFIG
+	location ~* wp-config.php {
+	    deny all;
+	}
+
+	## BLOCK WP BROWSING AND FILE EDITING
+	location ~* wp-admin/includes { deny all; }
+	location ~* wp-includes/theme-compat/ { deny all; }
+	location ~* wp-includes/js/tinymce/langs/.*.php { deny all; }
+	## location /wp-includes/ { internal; }
+
+	location ~ /\.ht {
+		deny all;
+	}
+
+	location ~ /.well-known {
+	    allow all;
+	  }
+
+	#PAGESPEED SETTINGS
+
+	location ~ "\.pagespeed\.([a-z]\.)?[a-z]{2}\.[^.]{10}\.[^.]+" { add_header "" ""; }
+    location ~ "^/ngx_pagespeed_static/" { }
+    location ~ "^/ngx_pagespeed_beacon" { }
+
+	#pagespeed EnableFilters rewrite_javascript;
+	pagespeed EnableFilters rewrite_css;
+	#pagespeed EnableFilters defer_javascript;
+	pagespeed EnableFilters prioritize_critical_css;
+	#pagespeed EnableFilters resize_rendered_image_dimensions;
+
+	pagespeed EnableFilters lazyload_images;
+	pagespeed LazyloadImagesAfterOnload off;
+	pagespeed LazyloadImagesBlankUrl "https://www.gstatic.com/psa/static/1.gif";
+	#pagespeed EnableFilters rewrite_images;
+	pagespeed DisableFilters resize_images;
+
+	pagespeed EnableFilters collapse_whitespace;
+	pagespeed EnableFilters remove_comments;
+
+	#pagespeed EnableFilters extend_cache;
+
+	pagespeed EnableFilters insert_dns_prefetch;
+
+	pagespeed EnableFilters debug;
+}
+server {
+    if ($host = aimresearchservices.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+	server_name aimresearchservices.com;
+    return 404; # managed by Certbot
+}
+
+server {
+	listen 80;
+	server_name aimresearchnetwork.net www.aimresearchnetwork.net www.assistanceinmarketing.com assistanceinmarketing.com www.aimresearchservices.com;
+	return 301 $scheme://$host$request_uri;
+}

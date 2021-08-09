@@ -1,0 +1,17 @@
+[
+  {
+    "model": "website.Listing",
+    "pk": 1,
+    "fields": {
+      "name": "Oak Terrace",
+      "address": "20420 Rafferty Ct Soulsbyville, CA 95372",
+      "thumbnail": "coventry-at-cottonwood-heights-salt-lake-city-ut-442.jpg",
+      "latitude": 37.9936018,
+      "longitude": -120.2715859,
+      "user": ["member"],
+      "categories": [ ["assisted-living"], ["memory-care"] ],
+      "created_at": "2018-01-01 12:30:30",
+      "updated_at": "2018-01-01 12:30:30"
+    }
+  }
+]

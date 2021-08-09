@@ -1,0 +1,34 @@
+{# HTML5 VIDEO #}
+<video id="heroVideo" autoplay muted loop playsinline class="fillWidth"
+	poster="{% static "website/video/hero/poster.jpg" %}">
+	<source src="vid.mp4" type="video/mp4">
+	<source src="vid.webm" type="video/webm">
+    <img src="{% static "website/video/hero/poster.jpg" %}" title="Your browser does not support the video tag.">
+</video>
+
+{# FORM SELECT #}
+<select name="listing_category" id="listing_category" class="chosen-select-no-single" >
+	<option label="blank">Select Category</option>
+	{% for category in categories %}
+		{% if category == listing.categories.all.0 %}
+			<option selected value="{{category.slug}}">{{category.name}}</option>
+		{% else %}
+			<option value="{{category.slug}}">{{category.name}}</option>
+		{% endif %}
+	{% endfor %}
+</select>
+
+{# FORM FILE UPLOAD: HIDE INPUT AND USE LABEL FOR BROWSER #}
+input[type="file"] {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+input[type="file"] + label {
+
+}
+<input type="file" name="thumbnail" accept="image/*" id="id_thumbnail" style="display:none;">
+<label for="id_thumbnail">Upload Thumbnail</label>

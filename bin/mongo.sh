@@ -1,0 +1,33 @@
+#!/bin/bash
+
+## CHMOD +X ${BASH_FILE_PATH}
+## CHMOD -R 755 ${BACKUP_DIRECTORY}
+
+## CONFIGURATION
+
+BACKUP_DIRECTORY=/home/luke/backups/boats/database
+DATABASE=boats
+
+DRIVE_FOLDER_ID=0B5GFBdRKT1Wvcnc5R1hFd2lMRnM
+
+## VARIABLES
+
+MONGODUMP_PATH="/usr/bin/mongodump"
+
+DAYS_TO_KEEP=14
+
+FILE_SUFFIX=_database
+FILE=`date +"%Y%m%d%H%M"`${FILE_SUFFIX}
+OUTPUT_FILE=${BACKUP_DIRECTORY}/${FILE}
+
+## DUMP AND COMPRESS DATABASE BACKUP FILE
+
+${MONGODUMP_PATH} -d ${DATABASE}
+
+mv dump ${OUTPUT_FILE}
+tar -zcvf ${OUTPUT_FILE}.tgz ${OUTPUT_FILE}
+rm -rf ${OUTPUT_FILE}
+
+## BACKUP TO GOOGLE DRIVE ( GDRIVE )
+
+/usr/sbin/drive upload --parent ${DRIVE_FOLDER_ID} --file ${OUTPUT_FILE}.tgz

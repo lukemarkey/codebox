@@ -1,0 +1,36 @@
+// css selectors
+
+a[href^="mailto"] // target all href tags that start with 'mailto'
+
+// css unit measurements: set body font size to 62.5% so that 1.0em = 10px
+
+padding / margin: rem
+font-size: em
+borders: px
+media queries: em
+
+// bootstrap breakpoints
+
+// smallest
+@media (max-width: 440px)
+
+// extra small
+@media (min-width: 440px) and (max-width: 768px)
+
+// small
+@media (min-width: 768px) and (max-width: 992px)
+
+// medium
+@media (min-width: 992px) and (max-width: 1200px)
+
+// large
+@media (min-width: 1200px)
+
+// PRINT
+
+@media print
+
+// DARKEN BACKGROUND IMAGE
+.image-container {
+	linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/static/website/img/default.jpg') center center no-repeat;
+}

@@ -1,0 +1,81 @@
+///////////////////////////////////////////////////////////////////////////
+// SELECTORS
+///////////////////////////////////////////////////////////////////////////
+
+var element = document.querySelector('#elementID');
+
+///////////////////////////////////////////////////////////////////////////
+// CHECK IF VARIABLE UNDEFINED
+///////////////////////////////////////////////////////////////////////////
+
+if (typeof variable === 'undefined' || variable === null) {
+
+}
+
+///////////////////////////////////////////////////////////////////////////
+// ON CLICK LISTENERS
+///////////////////////////////////////////////////////////////////////////
+
+var filterButtons = document.querySelectorAll('.filter-button');
+
+for (let button of filterButtons) {
+	button.onclick = function() {
+		console.log('clicked');
+		shopIndexContainer.isotope({ filter: button.getAttribute('data-filter')})
+	};
+}
+
+///////////////////////////////////////////////////////////////////////////
+// HREF BY CLASS NAME
+///////////////////////////////////////////////////////////////////////////
+
+$('.class').click(function () {
+	window.location.href = '/relative-path/';
+});
+
+$('.class').click(function () {
+	window.open('https://website.com', '_blank');
+});
+
+document.getElementById('id').onclick = function(){ }
+
+///////////////////////////////////////////////////////////////////////////
+// REPLACE TEXT WITH HTML
+///////////////////////////////////////////////////////////////////////////
+
+(function($) {
+	$("h1, h2, h3, h4, h5, h6, p").each(function() {
+		var text = $(this).html();
+		$(this).html(text.replace(/aim /gi, '<span class="aim-text">AIM </span>'));
+	});
+})(jQuery);
+
+function changeElementText() {
+	var span = document.getElementById("spanID");
+	var text = document.createTextNode("Text to insert.");
+	span.appendChild(text);
+}
+
+///////////////////////////////////////////////////////////////////////////
+// SET ACTIVE CLASS TO PARENT LIST ITEM IN NAV MENU
+///////////////////////////////////////////////////////////////////////////
+
+function setActiveNavigation() {
+	var path = window.location.href;
+	$('#menu-primary li a').each(function() {
+		if( this.href === path ) {
+			this.parentNode.parentNode.className = 'active';
+		}
+	});
+}
+
+///////////////////////////////////////////////////////////////////////////
+// REMOVE DOM ELEMENTS FROM HTML (FASTER THAN INNERHTML)
+///////////////////////////////////////////////////////////////////////////
+
+function removeElement() {
+	var myNode = document.getElementById("id");
+	while (myNode.firstChild) {
+		myNode.removeChild(myNode.firstChild);
+	}
+}

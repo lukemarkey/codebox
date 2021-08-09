@@ -1,0 +1,15 @@
+# IGNORE DIRECTORY ONE LEVEL DOWN FROM ROOT
+/*/directory/
+
+# IGNORE DIRECTORY IN ALL LEVELS DOWN FROM ROOT
+/**/directory/
+
+## DJANGO GITIGNORE
+
+/env/
+/node_modules/
+/static/
+/media/
+/**/__pycache__/
+
+.env

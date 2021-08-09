@@ -1,0 +1,26 @@
+{# FORM TAGS FOR HTML #}
+
+{{ form.name.errors }}
+{{ form.name }}
+
+{# BASIC CONTACT FORM HTML #}
+
+<form method="post" action="{% url 'email-contact' %}" class="form-validation">
+
+    {% csrf_token %}
+
+    {{ form.captcha }}
+
+    <div class="row">
+        <div class="col-sm-6">
+            {{ form.name }}
+        </div>
+        <div class="col-sm-6">
+            {{ form.email }}
+        </div>
+    </div>
+
+    {{ form.message }}
+    <input type="submit" value="Submit Message" class="theme-button p-bg-color hvr-float-shadow">
+</form>
+
